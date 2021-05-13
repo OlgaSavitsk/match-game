@@ -108,9 +108,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['.js', '.json', '.mjs', '.jsx', '.d.ts', '.ts', '.tsx'],
-    alias: {
-      '@': resolve(__dirname, 'src/script'),
-    },
+    // alias: {
+      // '@': resolve(__dirname, 'src/script'),
+    // },
   },
   devServer: {
     contentBase: './src/static',
