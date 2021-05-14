@@ -1,5 +1,5 @@
 import './card.scss';
-import { BaseComponent } from "components/base-component";
+import { BaseComponent } from "../base-component";
 
 const flipClass = 'flipped';
 
@@ -8,10 +8,10 @@ export class Card extends BaseComponent {
     super('div', ['card-container']);
     this.element.innerHTML = `
       <div class="card">
-          <div class="card__front" style="backgroun-image: url('./images/${image}')"></div>
-          <div class="card__back"></div>
-        </div>
-      `;
+        <div class="card__front" style="background-image: url('./images/${image}')"></div>
+        <div class="card__back"></div>
+      </div>
+    `;
   }
 
   flipToBack() {
