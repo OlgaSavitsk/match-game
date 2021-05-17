@@ -9,6 +9,7 @@ import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-serv
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isAnalyze = process.env.analyze;
+const path = require('path');
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -70,6 +71,7 @@ const config: Configuration = {
       },
       {
         test: /\.(png|jpg|gif)$/,
+        type: 'static/resource',
         use: [
           {
             loader: 'url-loader',
@@ -113,7 +115,11 @@ const config: Configuration = {
     // },
   },
   devServer: {
-    contentBase: './src/static',
+    // contentBase: './src/static',
+    contentBase: [
+      path.join(__dirname, 'public'),
+      './src/static',
+    ],
     port: 9000,
     hot: true,
     historyApiFallback: true,
@@ -131,7 +137,7 @@ const config: Configuration = {
       ? new CopyWebpackPlugin({
         patterns: [
           { from: './src/static', to: '.' },
-          { from: './public' },
+          { from: 'public' },
       ],
       })
       : nothing,

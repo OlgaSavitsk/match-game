@@ -1,20 +1,30 @@
+import './game.scss';
 import { delay } from "../../shared/delay";
 import { BaseComponent } from "../base-component";
 import { CardField } from "../card-field/card-field";
 import { Card } from "../card/card";
+import { ImageCategoryModel } from '../../models/image-category-model';
+import { Canvas } from '../timer/timer';
 
 const flipDelay = 3000;
+const colorDelay = 1000;
+const match = 'match';
+const unmatch = 'unmatch';
+
 export class Game extends BaseComponent {
   private readonly cardField: CardField;
   private activeCard?: Card;
+  private canvas: Canvas;
 
   constructor() {
-    super();
+    super('div', ['game']);
     this.cardField = new CardField();
     this.element.appendChild(this.cardField.element);
+    this.canvas = new Canvas();
+    this.element.prepend(this.canvas.element);
   }
 
-  /* initGame(images: string[]) {
+  initGame(images: string[]) {
     this.cardField.clear();
     const cards = images
       .concat(images)
@@ -29,6 +39,8 @@ export class Game extends BaseComponent {
   }
 
  private async cardHandler(card: Card) {
+  if(!card.isFlipped) return;
+
     await card.flipToFront();
 
     if (!this.activeCard) {
@@ -37,9 +49,17 @@ export class Game extends BaseComponent {
     }
 
     if (this.activeCard.image != card.image) {
+      await delay(colorDelay);
+      card.element.classList.add(unmatch);
+      this.activeCard.element.classList.add(unmatch);
       await delay(flipDelay);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
     }
+    if (this.activeCard.image === card.image) {
+      await delay(colorDelay);
+      card.element.classList.add(match);
+      this.activeCard.element.classList.add(match);
+    }
     this.activeCard = undefined;
-  } */
+  }
 }

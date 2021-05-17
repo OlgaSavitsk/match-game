@@ -2,18 +2,12 @@ import './logo.scss';
 import { BaseComponent } from "../base-component";
 
 export class Logo extends BaseComponent {
-  public node: HTMLElement;
 
   constructor() {
-  super('div', ['logo'])
+  super('div', ['logo']);
+  this.element.innerHTML = `
+  <div class="logo__up">Match</div>
+          <div class="logo__down">Match</div>
+  `;
   }
 }
-
-let logo = new Logo();
-
-/* const logo = (name: string, handlerClick: () => void): HTMLElement => {
-  const logo = document.createElement('div');
-  logo.classList.add('logo');
-  logo.innerHTML = 'MATCH';
-  return logo;
-}; */
