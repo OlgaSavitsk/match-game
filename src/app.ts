@@ -1,25 +1,21 @@
+import { Component } from "component";
 import { Header } from "./components/header/header";
-import { Game } from "./components/game/game";
-import { ImageCategoryModel } from './models/image-category-model';
-import { Logo } from "./components/logo/logo";
+import { AboutPage } from "./pages/about-page/about-page";
 
-export class App {
-  private readonly game: Game;
-  public header: Header;
-  private readonly logo: Logo;
+export class App implements Component{
+  private readonly app: HTMLDivElement;
+  header: Header;
 
-  constructor(private readonly rootElement: HTMLElement) {
-    this.game = new Game();
-    this.rootElement.appendChild(this.game.element);
-    this.header = new Header();
-    this.rootElement.prepend(this.header.element);
+  constructor (private readonly rootElement: HTMLElement) {
+    this.app = document.createElement('div');
+    this.app.classList.add('application');
   }
 
- async start() {
-    const response = await fetch('/images.json');
-    const categories: ImageCategoryModel[] = await response.json();
-    const cat = categories[0];
-    const images = cat.images.map((name) => `${cat.category}/${name}`);
-    this.game.initGame(images);
+  render(): HTMLElement {
+    this.rootElement.appendChild(this.app);
+    //this.appElement.appendChild(new GamePage(this.appElement).render());
+    this.app.appendChild(new AboutPage(this.app).render())
+    return this.app;
   }
+
 }

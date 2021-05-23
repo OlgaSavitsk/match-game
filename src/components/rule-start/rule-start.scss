@@ -1,0 +1,39 @@
+.rules__block_start {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  opacity: 0.66;
+}
+
+.rules__number {
+  width: 40px;
+  height: 41px;
+  border-radius: 50%;
+  font-family: Roboto;
+  font-weight: normal;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  background: #2196F3;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2),
+  0px 3px 4px rgba(0, 0, 0, 0.12),
+  0px 2px 4px rgba(0, 0, 0, 0.14);
+  margin: 0 15px;
+}
+.rules__text {
+  margin-left: 0;
+  width: 290px;
+}
+
+.rules {
+  width: 50%;
+  max-width: 360px;
+  height: 639px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}

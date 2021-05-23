@@ -1,6 +1,7 @@
 
 export class BaseComponent {
-  readonly element: HTMLElement|HTMLCanvasElement;
+  readonly element: HTMLElement;
+  textContent: any;
 
   constructor (tag: keyof HTMLElementTagNameMap = 'div', styles: string[] = []) {
     this.element = document.createElement(tag);

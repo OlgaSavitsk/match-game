@@ -9,10 +9,15 @@
     width: 96px;
     text-align: center;
     cursor: pointer;
+
     &:hover {
       background: #2196F3;
       transform: translateZ(20px);
     }
+  }
+  &__link {
+    color: #FFFFFF;
+    text-decoration: none;
   }
 }
 

@@ -4,19 +4,21 @@ import { HeaderWrapper } from "./header-wrapper";
 import { HeaderContainer } from './header-container';
 import { Logo } from '../logo/logo';
 import { Navigation } from '../navigation/navigation';
-import { Button } from '../button/button';
+import  { Button } from '../../shared/button/button';
 import { Avatar } from '../avatar/avatar';
+
+let stopWatch: NodeJS.Timeout;
 
 export class Header extends BaseComponent {
   public header: HTMLElement;
   public headerWrapper: HeaderWrapper;
   public headerContainer: HeaderContainer;
-  private readonly logo: Logo;
+  private logo: Logo;
   public navigation: Navigation;
-  private readonly button: Button;
-  private readonly avatar: Avatar;
+  public button: Button;
+  private avatar: Avatar;
 
-constructor() {
+constructor(private readonly root: HTMLElement) {
     super('header', ['header']);
     this.headerWrapper = new HeaderWrapper();
     this.headerContainer = new HeaderContainer();
@@ -31,4 +33,9 @@ constructor() {
     this.headerContainer.element.appendChild(this.button.element);
     this.headerContainer.element.appendChild(this.avatar.element);
   }
+  render(){
+    this.root.appendChild(this.element);
+    return this.element;
+  }
 }
+

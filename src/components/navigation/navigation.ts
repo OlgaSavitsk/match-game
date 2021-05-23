@@ -1,12 +1,13 @@
 import './navigation.scss';
 import { BaseComponent } from '../base-component';
-import { NavigationItemAbout, NavigationItemScore, NavigationItemSetting } from './navigation-item';
-
+import { NavigationItemAbout } from './navigation-about';
+import { NavigationItemScore }from './navigation-score';
+import { NavigationItemSetting } from './navigation-setting';
 
 export class Navigation extends BaseComponent {
-private readonly navigationItemAbout: NavigationItemAbout;
-private readonly navigationItemScore: NavigationItemScore;
-private readonly navigationItemSetting: NavigationItemSetting;
+private navigationItemAbout: NavigationItemAbout;
+private navigationItemScore: NavigationItemScore;
+private navigationItemSetting: NavigationItemSetting;
 
   constructor() {
     super('nav', ['navigation'])

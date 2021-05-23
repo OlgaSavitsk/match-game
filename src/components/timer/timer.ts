@@ -1,28 +1,35 @@
 import './timer.scss';
 import { BaseComponent } from '../base-component';
+import { Button } from '../../shared/button/button';
 
+let secondCount = 0;
 
-export class Canvas extends BaseComponent{
-canvas: HTMLCanvasElement;
-context: CanvasRenderingContext2D;
-width: number;
-heigth: number;
+export class Timer extends BaseComponent{
+  private timer: Timer;
 
-  constructor() {
-    super('canvas', ['timer']);
-   /*  this.width = canvas.width;
-    this.heigth = canvas.height; */
-    const context = this.canvas.getContext("2d");
-    if (!context) {
-      throw new Error("Failed to getContext from canvas element");
-    }
+  constructor()  {
+    super('span', ['timer']);
   }
 
- timer() {
-   this.context.fillText(`00:00`, 0, 20);
- }
+    screenCount() {
+      let min = Math.floor((secondCount % 3600) / 60);
+      let sec = Math.floor(secondCount % 60);
+      let screenMinutes = (min < 10) ? '0' + min : min;
+        let screenSeconds = (sec < 10) ? '0' + sec : sec;
+        this.element.textContent = screenMinutes + ':' + screenSeconds;
+        secondCount++;
+    }
 
-/*  setInterval(() => {
-  }, 1000); */
+    initTimer() {
+      this.screenCount()
+      let stopWhatch = setInterval(() => {
+       this.screenCount()
+        }, 1000);
+    /*   let button = new Button();
+      button.element.addEventListener('click', () => {
+        clearInterval(stopWhatch);
+      }); */
+    }
 }
+
 

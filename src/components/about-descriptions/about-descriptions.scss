@@ -1,0 +1,28 @@
+.description {
+  width: 50%;
+  max-width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  &__registr {
+    background-image: url('./images/registr.png');
+    width: 302px;
+    height: 218px;
+    opacity: 0.66;
+    margin: 0;
+  }
+  &__setting {
+    background-image: url('./images/setting-button.png');
+    width: 116px;
+    height: 73px;
+    margin: 0;
+  }
+  &__card-field {
+    background-image: url('./images/card-field.png');
+    width: 330px;
+    height: 240px;
+    margin: 0;
+  }
+}
