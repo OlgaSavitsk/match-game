@@ -6,8 +6,10 @@ export class NavigationItemAbout extends BaseComponent {
   constructor() {
     super('div', ['navigation__item'])
     this.element.innerHTML = `
-     <div class="ico ico-about"></div>
-     <a class="navigation__link" href="#">About game</a>
+        <a class="navigation__link" href="#">
+        <div class="ico ico-about"></div>About game</a>
     `;
+    this.element.classList.add('active');
+
     }
 }

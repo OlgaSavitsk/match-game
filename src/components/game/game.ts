@@ -3,18 +3,17 @@ import { delay } from "../../shared/delay";
 import { BaseComponent } from "../base-component";
 import { CardField } from "../card-field/card-field";
 import { Card } from "../card/card";
-import { ImageCategoryModel } from '../../models/image-category-model';
 import { Timer } from '../timer/timer';
 import { PopupField } from '../popup/popup-field/popup-field';
 import { PopupCover } from '../popup/popup-cover/popup-cover';
 import { Button } from '../../shared/button/button';
 
-const flipDelay = 3000;
+const flipDelay = 1000;
 const colorDelay = 1000;
 const match = 'match';
 const unmatch = 'unmatch';
-const openCards = [];
-let stopWatch: number;
+const cards: Card[] = []
+
 
 export class Game extends BaseComponent {
   private readonly game: HTMLElement;
@@ -24,6 +23,9 @@ export class Game extends BaseComponent {
   private popupField: PopupField;
   private popupCover: PopupCover;
   public button: Button;
+  private openCards: Array<Card> = [];
+  private cards: Card[];
+
 
   constructor() {
     super('div', ['game']);
@@ -35,19 +37,29 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.popupField.element);
     this.popupCover = new PopupCover();
     this.element.appendChild(this.popupCover.element);
+    this.button = new Button();
+    this.element.appendChild(this.button.element).onclick = () => {
+      this.timer.stopTimer()
+      this.button.element.innerHTML = `
+      <a class="button__link" href="#">STOP GAME</a>
+    `;
+    };
+
   }
 
-  initGame(images: string[]) {
+  initGame(images: string[], start: number, end: number) {
     this.cardField.clear();
-    const cards = images
-      .concat(images)
-      .map((url) => new Card(url))
-      .sort(() => Math.random() - .5);
+
+      let addCard = images.slice(start, end);
+      let copyCard = addCard.slice();
+      const cards = addCard
+          .concat(copyCard)
+          .map((url) => new Card(url))
+          .sort(() => Math.random() - .5);
 
     cards.forEach((card) => {
     card.element.addEventListener('click', () => this.cardHandler(card))
     });
-
     this.cardField.addCards(cards);
     this.timer.initTimer();
   }
@@ -73,13 +85,20 @@ export class Game extends BaseComponent {
       await delay(colorDelay);
       card.element.classList.add(match);
       this.activeCard.element.classList.add(match);
-      openCards.push(this.activeCard.element)
+      this.openCards.push(this.activeCard)
     }
     this.activeCard = undefined;
-    if (openCards.length === 6){
+    if (this.openCards.length === 4){
+      this.timer.stopTimer()
+
       await delay(colorDelay);
       this.popupCover.element.classList.add('show');
       this.popupField.element.classList.add('show');
+
       }
-    }
+  }
+
 }
+
+const game = new Game();
+export default game;

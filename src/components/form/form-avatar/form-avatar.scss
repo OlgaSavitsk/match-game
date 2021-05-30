@@ -1,6 +1,7 @@
-.form__avatar{
-  background-image: url('./../images/avatar_form.png');
-  width: 200px;
+.form__avatar {
+  width: 100%;
+ // background-image: url('./icons/star.svg');
   height: 200px;
   border-radius: 100px;
+  padding-left: 35px;
 }

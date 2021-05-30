@@ -1,18 +1,9 @@
-.form {
-  width: 639px;
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  z-index: 10;
-  top: calc(50vh - 250px);
-  left: calc(50vw - 350px);
-  background: #FAFAFA;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
-  border-radius: 4px;
-  margin-top: 33px;
+  width: 320px;
 }
+
 form input{
   width: 328px;
   height: 60px;
@@ -25,26 +16,40 @@ form input{
   border-radius: 4px 4px 0px 0px;
   padding-left: 52px;
 }
+
 form label {
-  font-size: 12px;
+  font-size: 16px;
   color: rgba(0, 0, 0, 0.87);
-margin-left: 52px;
+  position: relative;
+  top: 16px;
+  margin-left: 15px;
 }
 
 .error {
-  width: 20px;
+  width: 200px;
   height: 20px;
+  font-size: 16px;
+  position: relative;
+  top: 83px;
+  right: 45px;
+  margin-right: 0;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.87);
 }
 
-input .valid {
-  background-color: chartreuse;
+.valid {
+  border: solid 2px chartreuse;
+  outline-color: chartreuse;
+  //background-color: chartreuse;
 }
 
-input .invalid {
-  background-color: crimson;
+.invalid {
+  border: solid 2px crimson;
+  outline-color: crimson;
 }
 
-input:focus.invalid {
-  outline: none;
-}
+
+/* input:focus {
+  outline-color: none;
+} */
 

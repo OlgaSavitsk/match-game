@@ -1,43 +1,80 @@
 import './form.scss';
 import { Component } from '../../../component';
-//import { BaseComponent } from '../../base-component';
-
-
+import { ButtonAdd } from '../button-form/button-add';
 export class Input implements Component {
-  private readonly input: HTMLElement;
+  private readonly field: HTMLInputElement;
   private readonly caption: HTMLElement;
   private readonly error: HTMLElement;
- /*  private readonly input: BaseComponent;
-  private readonly caption: BaseComponent;
-  private readonly error: BaseComponent;
-  private onValidate: boolean; */
+  public regEmail: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/gi;
+  public regName: RegExp = /^[a-zа-я0-9_-]{2,16}$/gi
+  public regNumber: RegExp = /^\d{1,}$/gi;
+  placeholder: string = '';
+  err: string;
+  name: string;
+  validate: (() => boolean);
+  onInput: () => void = () => {};
+  innerHTML: string;
+  private buttonAdd: ButtonAdd;
 
-/*   constructor() {
-    super('input')
-    this.caption = new BaseComponent('label');
-    this.input = new BaseComponent('input');
-    this.error = new BaseComponent('div');
-    this.input.element.addEventListener('input', () => {this.onInput()});
-    this.validate = this.onValidate;
-  } */
-  constructor(private readonly root: HTMLElement) {
-    this.input = document.createElement('input');
+
+  constructor(private readonly root: HTMLElement, placeholder: string, name: string, text: string/* , private callback: Function */)/* onValidate: string | (() => boolean) | undefined) */ {
+    //this.callback()
+    this.field = document.createElement('input');
+    this.field.placeholder = placeholder;
     this.caption = document.createElement('label');
-    this.caption.innerHTML = 'First Name';
+    this.caption.innerHTML = text;
     this.error = document.createElement('div');
     this.error.classList.add('error');
-   // this.input.addEventListener('input', () => {this.onInput()})
+    this.name = name;
+    //this.root.appendChild(new ButtonAdd(this.root).render())
+    this.field.addEventListener('input', (e) => {
+      if(this.onValidate) {
+        this.setError(this.onValidate(this.getValue()));
+      }
+      if(this.onInput) {
+        this.onInput();
+      }
+  });
   }
 
- /*  onInput() {
-    this.error.textContent = this.validate(this.input.element.value);
-  } */
+ onValidate(value: string): string{
+    if( this.name == 'email'){
+      return  this.field.value.match(this.regEmail) ? 'ok' : 'Error';
+    }
+    if(this.field.value.length === 0) {
+      return 'Field cannot be empty';
+    }
+    if(this.field.value.match(/\s/i)){
+      return  'The name cannot contain more than one word';
+    }
+    if(this.field.value.match(this.regNumber)){
+      return  'The name cannot be numbers';
+    } else {
+      return this.field.value.match(this.regName) ? 'ok' : 'Тame cannot consist of one symbal or contain the marks';
+    }
+  }
+
+  getValue() {
+    return this.field.value;
+  }
+
+setError(err: string | null) {
+    console.log(err);
+    this.error.textContent = err;
+    this.field.classList.add('invalid');
+     this.field.classList.remove('valid');
+    if(err === 'ok'){
+      //this.error.textContent = 'ok';
+      this.field.classList.remove('invalid');
+      this.field.classList.add('valid');
+    }
+  }
 
  render(): HTMLElement {
-    this.root.appendChild(this.input);
-    this.root.prepend(this.caption);
-    this.input.appendChild(this.error)
-    return this.input;
+    this.root.appendChild(this.field);
+    this.root.appendChild(this.caption);
+    this.root.appendChild(this.error)
+    return this.field;
   }
 
 }

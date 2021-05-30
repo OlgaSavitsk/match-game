@@ -6,8 +6,9 @@ export class Logo extends BaseComponent {
   constructor() {
   super('div', ['logo']);
   this.element.innerHTML = `
-  <div class="logo__up">Match</div>
-          <div class="logo__down">Match</div>
+  <a class="navigation__link" href="#">
+    <div class="logo__up">Match</div>
+    <div class="logo__down">Match</div></a>
   `;
   }
 }

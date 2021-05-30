@@ -14,8 +14,20 @@ private navigationItemSetting: NavigationItemSetting;
     this.navigationItemAbout = new NavigationItemAbout();
     this.navigationItemScore = new NavigationItemScore();
     this.navigationItemSetting = new NavigationItemSetting();
-    this.element.appendChild(this.navigationItemAbout.element);
-    this.element.appendChild(this.navigationItemScore.element);
-    this.element.appendChild(this.navigationItemSetting.element);
+    this.element.appendChild(this.navigationItemAbout.element).onclick = () => {
+      this.navigationItemAbout.element.classList.add('active');
+     this.navigationItemSetting.element.classList.remove('active');
+      this.navigationItemScore.element.classList.remove('active');
+    }
+    this.element.appendChild(this.navigationItemScore.element).onclick = () => {
+      this.navigationItemScore.element.classList.add('active');
+      this.navigationItemSetting.element.classList.remove('active');
+      this.navigationItemAbout.element.classList.remove('active');
+    };
+    this.element.appendChild(this.navigationItemSetting.element).onclick = () => {
+      this.navigationItemSetting.element.classList.add('active');
+      this.navigationItemAbout.element.classList.remove('active');
+      this.navigationItemScore.element.classList.remove('active');
+    };
     }
 }

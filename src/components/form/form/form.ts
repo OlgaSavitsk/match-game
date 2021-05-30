@@ -1,29 +1,42 @@
 import './form.scss';
 import { Component } from '../../../component';
 import { Input } from './input';
-import { BaseComponent } from '../../base-component';
-
+import { ButtonAdd } from '../button-form/button-add';
+import { ButtonForm } from '../button-form/button-form';
+import { DataBase } from '../../../components/storage';
 
 export class Form implements Component {
-  private readonly form: HTMLElement;
-  private inputs: Input[] = [];
-  private input = Input;
+  private form: HTMLElement;
+  private inputs: Input[];
+  private input: Input;
+  public regName: RegExp = /^[a-z0-9_-]{3,16}$/;
+  private placeholder: string;
+  private name: string;
+  private values: string;
+  validate: ((values: string) => boolean);
+  text: string;
 
-  constructor(private readonly root: HTMLElement) {
+
+  constructor(private readonly root: HTMLElement, private callback: Function/* , private readonly db: DataBase */) {
+    // this.callback();
     this.form = document.createElement('form');
-   // this.form.classList.add('form');
-   /* this.inputs = [new Input( this.element, (e: string) => e.length === 0 ? 'error': 'ok' ),
-    new Input()] */
+    this.inputs = [];
+    this.form.addEventListener('input', (e) => {
+    var event: Event | undefined;
+    event?.preventDefault()
+    console.log('submit')
+  });
   }
-
- /*  constructor(private readonly root: HTMLElement) {
-    this.form = document.createElement('form');
-    this.inputs = [new Input((e: string) => e.length < 2 ? 'error': 'ok')]
-  } */
 
   render(): HTMLElement {
     this.root.appendChild(this.form);
-    this.form.appendChild(new Input(this.form).render());
-    return this.form;
+      this.form.appendChild(new Input(this.form, 'Jessie', 'username', 'First Name'/* , this.onValidate */).render()),
+      this.form.append(new Input(this.form, 'Doe', 'surname', 'Last Name'/* , this.onValidate */).render()),
+      this.form.append(new Input(this.form, 'Jessie.Doe@gmail.com', 'email', 'E-mail'/* , this.onValidate */).render());
+      this.form.appendChild(new ButtonForm(this.form).render()).onclick = () => {
+       // this.root.innerHTML = '';
+       // this.popupCover.element.classList.remove('show')
+        };
+      return this.form;
   }
 }

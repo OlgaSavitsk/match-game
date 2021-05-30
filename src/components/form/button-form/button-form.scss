@@ -1,7 +1,8 @@
 .form__button {
   width: 569px;
-  margin: 91px 0 26px 0;
+  margin: 19px 0 26px 0;
   text-align: right;
+
 
   &_colored {
     background: #2196F3;
@@ -12,6 +13,7 @@
     border: none;
     margin-right: 10px;
     text-transform: uppercase;
+    cursor: pointer;
   }
   &_disabled {
     background: #E3F2FD;
@@ -21,5 +23,10 @@
     padding: 10px 16px;
     border: none;
     text-transform: uppercase;
+    cursor: pointer;
   }
+}
+
+.form__button_colored .invalid {
+ background-color: crimson;
 }

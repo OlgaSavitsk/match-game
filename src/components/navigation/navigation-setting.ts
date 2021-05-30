@@ -6,8 +6,8 @@ export class NavigationItemSetting extends BaseComponent {
   constructor() {
     super('div', ['navigation__item'])
     this.element.innerHTML = `
-      <div class="ico ico-setting"></div>
-      <a class="navigation__link" href="#setting">Game Settings</a>
+      <a class="navigation__link" href="#setting">
+      <div class="ico ico-setting"></div>Game Settings</a>
     `;
-    }
+  }
 }

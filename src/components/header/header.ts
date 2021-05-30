@@ -16,7 +16,7 @@ export class Header extends BaseComponent {
   private logo: Logo;
   public navigation: Navigation;
   public button: Button;
-  private avatar: Avatar;
+ // private avatar: Avatar;
 
 constructor(private readonly root: HTMLElement) {
     super('header', ['header']);
@@ -24,14 +24,14 @@ constructor(private readonly root: HTMLElement) {
     this.headerContainer = new HeaderContainer();
     this.logo = new Logo();
     this.navigation = new Navigation();
-    this.button = new Button();
-    this.avatar = new Avatar();
+    //this.button = new Button();
+    //this.avatar = new Avatar();
     this.element.appendChild(this.headerWrapper.element);
     this.headerWrapper.element.appendChild(this.headerContainer.element);
     this.headerContainer.element.appendChild(this.logo.element);
     this.headerContainer.element.appendChild(this.navigation.element);
-    this.headerContainer.element.appendChild(this.button.element);
-    this.headerContainer.element.appendChild(this.avatar.element);
+   // this.headerContainer.element.appendChild(this.button.element);
+    //this.headerContainer.element.appendChild(this.avatar.element);
   }
   render(){
     this.root.appendChild(this.element);

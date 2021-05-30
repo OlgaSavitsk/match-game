@@ -1,5 +1,8 @@
 import './button-form.scss';
 import { Component } from '../../../component';
+import { Input } from '../form/input';
+import { PopupCover } from '../../../components/popup/popup-cover/popup-cover';
+import { FormRegistr } from '../form-registr';
 
 
 export class ButtonCancel implements Component {

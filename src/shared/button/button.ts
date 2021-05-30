@@ -3,23 +3,15 @@ import { BaseComponent } from '../../components/base-component';
 
 
 export class Button extends BaseComponent{
- readonly element: HTMLButtonElement;
+ readonly button: HTMLButtonElement;
+ public onClick: () => void = () => {};
 
  constructor() {
   super('div', ['button']);
   this.element.classList.add('button');
   this.element.innerHTML = 'STOP GAME';
+  this.element.innerHTML = `
+  <a class="button__link" href="#">STOP GAME</a>
+`;
 }
-
- /*  constructor() {
-    this.element = document.createElement('button');
-    this.element.classList.add('button');
-    this.element.innerHTML = 'STOP GAME';
-  } */
-
- /*  constructor (tag: keyof HTMLElementTagNameMap = 'button', styles: string[] = []) {
-    this.element = document.createElement('button');
-    this.element.classList.add('button');
-    this.element.innerHTML = 'STOP GAME';
-  } */
 }
