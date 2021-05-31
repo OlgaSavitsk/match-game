@@ -78,7 +78,7 @@ const config: Configuration = {
             options: {
               limit: 8192,
               name: isProduction ? '[contenthash].[ext]' : '[name].[ext]',
-              outputPath: 'static/images',
+              outputPath: 'public/images', /* 'static/images', */
             },
           },
         ],
@@ -118,7 +118,7 @@ const config: Configuration = {
     // contentBase: './src/static',
     contentBase: [
       path.join(__dirname, 'public'),
-      './src/static',
+      /* './src/static', */'public',
     ],
     port: 9000,
     hot: true,
