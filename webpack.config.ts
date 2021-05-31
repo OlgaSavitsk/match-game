@@ -71,7 +71,7 @@ const config: Configuration = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        type: 'static/resource',
+        type: 'public/resource', /* 'static/resource', */
         use: [
           {
             loader: 'url-loader',
@@ -136,8 +136,8 @@ const config: Configuration = {
     isProduction
       ? new CopyWebpackPlugin({
         patterns: [
+          { from: 'public',  to: '.' },
           { from: './src/static', to: '.' },
-          { from: 'public' },
       ],
       })
       : nothing,
