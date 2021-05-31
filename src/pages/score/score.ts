@@ -1,9 +1,8 @@
-import { ScoreField } from '../../components/score-field/score-field';
 import { Component } from '../../component';
+import { Avatar } from '../../components/avatar/avatar';
+import { ScoreField } from '../../components/score-field/score-field';
 import '../pages.scss';
 import { Button } from '../../shared/button/button';
-import { Avatar } from '../../components/avatar/avatar';
-
 
 export class ScorePage implements Component {
   private readonly scorePage: HTMLElement;

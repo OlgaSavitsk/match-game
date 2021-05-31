@@ -9,18 +9,9 @@ export class PopupField extends BaseComponent {
 
   constructor() {
   super('div', ['pop-up']);
-this.popupButton = new PopupButton();
-this.element.textContent = `Congratulations! You successfully found all matches on  minutes.`
-this.element.appendChild(this.popupButton.element).onclick = () => {
-  
-}
-
-}
-
-  outputResult() {
-    this.element.classList.add('show');
+  this.element.textContent = `Congratulations! You successfully found all matches on  minutes.`
   }
-
 }
+
 const popupField = new PopupField()
 export default popupField;

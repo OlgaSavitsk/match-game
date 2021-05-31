@@ -4,7 +4,6 @@ import { Component } from '../../../component';
 export class SelectBlockLavel implements Component {
   private readonly selectBlockLavel: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.selectBlockLavel = document.createElement('div');
     this.selectBlockLavel.classList.add('selected__block');
@@ -23,4 +22,3 @@ export class SelectBlockLavel implements Component {
     return this.selectBlockLavel;
   }
 }
-

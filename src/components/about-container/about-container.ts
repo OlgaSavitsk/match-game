@@ -12,7 +12,7 @@ export class AboutContainer implements Component {
     this.aboutContainer.classList.add('about__container');
   }
 
-  render() {
+  render(): HTMLElement {
     this.root.appendChild(this.aboutContainer);
     this.aboutContainer.appendChild(new Rules(this.aboutContainer).render());
     this.aboutContainer.appendChild(new AboutDescriptions(this.aboutContainer).render())

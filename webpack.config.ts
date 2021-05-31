@@ -71,14 +71,14 @@ const config: Configuration = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        type: 'public/resource', /* 'static/resource', */
+        type:  'static/resource',
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
               name: isProduction ? '[contenthash].[ext]' : '[name].[ext]',
-              outputPath: 'public/images', /* 'static/images', */
+              outputPath: 'static/images',
             },
           },
         ],
@@ -118,7 +118,7 @@ const config: Configuration = {
     // contentBase: './src/static',
     contentBase: [
       path.join(__dirname, 'public'),
-      /* './src/static', */'public',
+      './src/static',
     ],
     port: 9000,
     hot: true,
@@ -136,8 +136,8 @@ const config: Configuration = {
     isProduction
       ? new CopyWebpackPlugin({
         patterns: [
-          { from: 'public',  to: '.' },
           { from: './src/static', to: '.' },
+          { from: './public'},
       ],
       })
       : nothing,

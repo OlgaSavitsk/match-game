@@ -2,7 +2,6 @@ import { SettingField } from './setting-field/setting-field';
 import { Component } from '../../component';
 import '../pages.scss';
 import { Button } from '../../shared/button/button';
-import { ImageCategoryModel } from '../../models/image-category-model';
 
 
 export class SettingPage implements Component {
@@ -26,5 +25,3 @@ export class SettingPage implements Component {
     return this.settingPage;
   }
 }
-
-

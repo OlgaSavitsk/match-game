@@ -4,8 +4,8 @@ import { BaseComponent } from "../base-component";
 const flipClass = 'flipped';
 
 export class Card extends BaseComponent {
-isFlipped = false;
-isConcided = false;
+isFlipped: boolean = false;
+isConcided: boolean = false;
 
   constructor(readonly image: string) {
     super('div', ['card-container']);

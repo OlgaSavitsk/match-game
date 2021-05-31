@@ -9,12 +9,10 @@ export class SettingField implements Component {
   private selectBlockLavel: SelectBlockLavel;
   public settingAr: string;
 
-
-
   constructor(private readonly root: HTMLElement) {
     this.settingField = document.createElement('div');
     this.settingField.classList.add('setting__field');
-    this.settingAr
+    this.settingAr;
   }
 
   getSettingValue() {
@@ -23,12 +21,10 @@ export class SettingField implements Component {
     if (!selectCard) throw Error('App root element not found');
     if (!selectLavel) throw Error('App root element not found');
     selectCard.addEventListener('change', () => {
-      localStorage.setItem('card-category', selectCard.value);
-      console.log(selectCard.value)
+    localStorage.setItem('card-category', selectCard.value);
     })
     selectLavel.addEventListener('change', () => {
-       localStorage.setItem('lavel-category', selectLavel.value);
-       console.log(selectLavel.value)
+    localStorage.setItem('lavel-category', selectLavel.value);
      })
   }
 

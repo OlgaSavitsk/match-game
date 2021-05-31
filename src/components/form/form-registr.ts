@@ -3,7 +3,6 @@ import { Component } from '../../component';
 import { FormContainer } from './form-container/form-container';
 import { ButtonForm } from './button-form/button-form';
 import { PopupCover } from '../../components/popup/popup-cover/popup-cover';
-import { DataBase } from '../../components/storage';
 
 
 export class FormRegistr implements Component {
@@ -27,7 +26,9 @@ export class FormRegistr implements Component {
      this.root.innerHTML = '';
      this.popupCover.element.classList.remove('show')
      };
-
+     this.formRegistr.appendChild(new ButtonForm(this.formRegistr).render()).onclick = () => {
+      this.formRegistr.innerHTML = '';
+       };
     return this.formRegistr;
   }
 }

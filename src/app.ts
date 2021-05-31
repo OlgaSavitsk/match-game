@@ -1,5 +1,4 @@
 import { Component } from "./component";
-import { DataBase } from "./components/storage";
 import { AboutPage } from "./pages/about-page/about-page";
 
 export class App implements Component{

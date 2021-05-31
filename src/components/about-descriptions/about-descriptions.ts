@@ -16,7 +16,7 @@ export class AboutDescriptions implements Component {
     `;
   }
 
-  render() {
+  render(): HTMLElement {
     this.root.appendChild(this.aboutDescriptions);
     return this.aboutDescriptions;
   }

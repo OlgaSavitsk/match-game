@@ -14,7 +14,7 @@ export class AboutField implements Component {
     `;
   }
 
-  render() {
+  render(): HTMLElement {
     this.root.appendChild(this.aboutField);
     this.aboutField.appendChild(new AboutContainer(this.aboutField).render());
     return this.aboutField;

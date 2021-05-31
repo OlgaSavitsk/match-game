@@ -1,15 +1,9 @@
 import './button-form.scss';
 import { Component } from '../../../component';
-import iDB, { DataBase } from '../../../components/storage';
-//import { DataBase } from '../../../components/storage';
 
 
 export class ButtonAdd implements Component {
-  [x: string]: any;
   private readonly buttonAdd: HTMLElement;
-  public iDB: DataBase;
-  public onClick: () => void;
-  onclick: () => void;
 
   constructor(private readonly root: HTMLElement) {
     this.buttonAdd = document.createElement('button');

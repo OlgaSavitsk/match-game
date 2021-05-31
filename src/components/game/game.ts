@@ -10,15 +10,12 @@ import { Button } from '../../shared/button/button';
 
 const flipDelay = 1000;
 const colorDelay = 1000;
-const match = 'match';
-const unmatch = 'unmatch';
-const cards: Card[] = []
-
 
 export class Game extends BaseComponent {
   private readonly game: HTMLElement;
   private readonly cardField: CardField;
   private activeCard?: Card;
+  private isAnimation = false;
   private timer: Timer;
   private popupField: PopupField;
   private popupCover: PopupCover;
@@ -41,10 +38,8 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.button.element).onclick = () => {
       this.timer.stopTimer()
       this.button.element.innerHTML = `
-      <a class="button__link" href="#">STOP GAME</a>
-    `;
+      <a class="button__link" href="#">STOP GAME</a>`;
     };
-
   }
 
   initGame(images: string[], start: number, end: number) {
@@ -52,6 +47,7 @@ export class Game extends BaseComponent {
 
       let addCard = images.slice(start, end);
       let copyCard = addCard.slice();
+
       const cards = addCard
           .concat(copyCard)
           .map((url) => new Card(url))
@@ -65,40 +61,46 @@ export class Game extends BaseComponent {
   }
 
  private async cardHandler(card: Card) {
-  if(!card.isFlipped) return;
+    if(this.isAnimation) return
+    if(!card.isFlipped) return;
+      this.isAnimation = true;
     await card.flipToFront();
 
     if (!this.activeCard) {
       this.activeCard = card;
+      this.isAnimation = false
       return;
     }
     if (this.activeCard.image != card.image) {
       await delay(colorDelay);
-      card.element.classList.add(unmatch);
-      this.activeCard.element.classList.add(unmatch);
+      card.element.classList.add('unmatch');
+      this.activeCard.element.classList.add('unmatch');
       await delay(flipDelay);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
-      card.element.classList.remove(unmatch);
-      this.activeCard.element.classList.remove(unmatch);
+      card.element.classList.remove('unmatch');
+      this.activeCard.element.classList.remove('unmatch');
     }
     if (this.activeCard.image === card.image) {
       await delay(colorDelay);
-      card.element.classList.add(match);
-      this.activeCard.element.classList.add(match);
+      card.element.classList.add('match');
+      this.activeCard.element.classList.add('match');
       this.openCards.push(this.activeCard)
     }
-    this.activeCard = undefined;
-    if (this.openCards.length === 4){
+      this.activeCard = undefined;
+      this.isAnimation = false;
+    let lavelCategory = localStorage.getItem('lavel-category');
+    if (lavelCategory === '4x4' && this.openCards.length === 8) {
       this.timer.stopTimer()
-
       await delay(colorDelay);
       this.popupCover.element.classList.add('show');
       this.popupField.element.classList.add('show');
-
+      }
+    if (lavelCategory === '6x6' && this.openCards.length === 18) {
+      this.timer.stopTimer()
+      await delay(colorDelay);
+      this.popupCover.element.classList.add('show');
+      this.popupField.element.classList.add('show');
       }
   }
-
 }
 
-const game = new Game();
-export default game;

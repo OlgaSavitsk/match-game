@@ -11,7 +11,6 @@ export class PopupCover extends BaseComponent {
   super('div', ['cover']);
   this.element.addEventListener('click', () => {
     this.element.classList.add('hidden');
-
   });
-}
+  }
 }

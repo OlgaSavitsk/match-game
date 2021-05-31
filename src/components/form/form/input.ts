@@ -8,13 +8,7 @@ export class Input implements Component {
   public regEmail: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/gi;
   public regName: RegExp = /^[a-zа-я0-9_-]{2,16}$/gi
   public regNumber: RegExp = /^\d{1,}$/gi;
-  placeholder: string = '';
-  err: string;
   name: string;
-  validate: (() => boolean);
-  onInput: () => void = () => {};
-  innerHTML: string;
-  private buttonAdd: ButtonAdd;
 
 
   constructor(private readonly root: HTMLElement, placeholder: string, name: string, text: string/* , private callback: Function */)/* onValidate: string | (() => boolean) | undefined) */ {
@@ -25,17 +19,13 @@ export class Input implements Component {
     this.caption.innerHTML = text;
     this.error = document.createElement('div');
     this.error.classList.add('error');
-    this.name = name;
-    //this.root.appendChild(new ButtonAdd(this.root).render())
     this.field.addEventListener('input', (e) => {
       if(this.onValidate) {
         this.setError(this.onValidate(this.getValue()));
       }
-      if(this.onInput) {
-        this.onInput();
-      }
   });
   }
+
 
  onValidate(value: string): string{
     if( this.name == 'email'){
@@ -50,7 +40,7 @@ export class Input implements Component {
     if(this.field.value.match(this.regNumber)){
       return  'The name cannot be numbers';
     } else {
-      return this.field.value.match(this.regName) ? 'ok' : 'Тame cannot consist of one symbal or contain the marks';
+      return this.field.value.match(this.regName) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
     }
   }
 
@@ -59,14 +49,16 @@ export class Input implements Component {
   }
 
 setError(err: string | null) {
+  const buttonadd = document.querySelector('.form__button_colored');
     console.log(err);
     this.error.textContent = err;
     this.field.classList.add('invalid');
      this.field.classList.remove('valid');
+     buttonadd?.setAttribute('disabled', 'disabled')
     if(err === 'ok'){
-      //this.error.textContent = 'ok';
       this.field.classList.remove('invalid');
       this.field.classList.add('valid');
+      buttonadd?.removeAttribute('disabled')
     }
   }
 
