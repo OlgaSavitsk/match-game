@@ -10,7 +10,7 @@ export class FormRegistr implements Component {
 
   private popupCover: PopupCover;
 
-  constructor(private readonly root: HTMLElement/* , private readonly db: DataBase */) {
+  constructor(private readonly root: HTMLElement /* , private readonly db: DataBase */) {
     this.formRegistr = document.createElement('div');
     this.formRegistr.classList.add('form-registr');
     this.formRegistr.innerHTML = `
@@ -20,7 +20,7 @@ export class FormRegistr implements Component {
 
   render(): HTMLElement {
     this.root.appendChild(this.formRegistr);
-    this.formRegistr.appendChild(new FormContainer(this.formRegistr/* , this.db */).render());
+    this.formRegistr.appendChild(new FormContainer(this.formRegistr /* , this.db */).render());
     this.popupCover = new PopupCover();
     this.root.appendChild(this.popupCover.element).onclick = () => {
       this.root.innerHTML = '';
@@ -32,3 +32,4 @@ export class FormRegistr implements Component {
     return this.formRegistr;
   }
 }
+export default FormRegistr;

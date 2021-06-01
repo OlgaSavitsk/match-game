@@ -1,6 +1,5 @@
 import './form.scss';
 import { Component } from '../../../component';
-import { ButtonAdd } from '../button-form/button-add';
 
 export class Input implements Component {
   private readonly field: HTMLInputElement;
@@ -17,7 +16,12 @@ export class Input implements Component {
 
   name: string;
 
-  constructor(private readonly root: HTMLElement, placeholder: string, name: string, text: string/* , private callback: Function */)/* onValidate: string | (() => boolean) | undefined) */ {
+  constructor(
+    private readonly root: HTMLElement,
+    placeholder: string,
+    name: string,
+    text: string, /* , private callback: Function */
+  ) /* onValidate: string | (() => boolean) | undefined) */ {
     // this.callback()
     this.field = document.createElement('input');
     this.field.placeholder = placeholder;
@@ -25,7 +29,7 @@ export class Input implements Component {
     this.caption.innerHTML = text;
     this.error = document.createElement('div');
     this.error.classList.add('error');
-    this.field.addEventListener('input', e => {
+    this.field.addEventListener('input', () => {
       if (this.onValidate) {
         this.setError(this.onValidate(this.getValue()));
       }
@@ -33,8 +37,8 @@ export class Input implements Component {
   }
 
   onValidate(value: string): string {
-    if (this.name == 'email') {
-      return (this.regEmail.exec(this.field.value)) ? 'ok' : 'Error';
+    if (this.name === 'email') {
+      return this.regEmail.exec(this.field.value) ? 'ok' : 'Error';
     }
     if (this.field.value.length === 0) {
       return 'Field cannot be empty';
@@ -45,16 +49,17 @@ export class Input implements Component {
     if (this.regNumber.exec(this.field.value)) {
       return 'The name cannot be numbers';
     }
-    return (this.regName.exec(this.field.value)) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
+    return this.regName.exec(this.field.value)
+      ? 'ok'
+      : 'Field cannot consist of one symbal or contain the marks';
   }
 
-  getValue() {
+  getValue(): string {
     return this.field.value;
   }
 
-  setError(err: string | null) {
+  setError(err: string | null): void {
     const buttonadd = document.querySelector('.form__button_colored');
-    console.log(err);
     this.error.textContent = err;
     this.field.classList.add('invalid');
     this.field.classList.remove('valid');
@@ -73,3 +78,4 @@ export class Input implements Component {
     return this.field;
   }
 }
+export default Input;

@@ -29,9 +29,9 @@ const formStylesRule = (useModules = false) => ({
         importLoaders: 1,
         sourceMap: true,
         // ...(useModules && {
-          // modules: {
-            // localIdentName: '[local]-[hash:base64:5]',
-          // },
+        // modules: {
+        // localIdentName: '[local]-[hash:base64:5]',
+        // },
         // }),
       },
     },
@@ -71,7 +71,7 @@ const config: Configuration = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        type:  'static/resource',
+        type: 'static/resource',
         use: [
           {
             loader: 'url-loader',
@@ -111,15 +111,12 @@ const config: Configuration = {
   resolve: {
     extensions: ['.js', '.json', '.mjs', '.jsx', '.d.ts', '.ts', '.tsx'],
     // alias: {
-      // '@': resolve(__dirname, 'src/script'),
+    // '@': resolve(__dirname, 'src/script'),
     // },
   },
   devServer: {
     // contentBase: './src/static',
-    contentBase: [
-      path.join(__dirname, 'public'),
-      './src/static',
-    ],
+    contentBase: [path.join(__dirname, 'public'), './src/static'],
     port: 9000,
     hot: true,
     historyApiFallback: true,
@@ -135,11 +132,8 @@ const config: Configuration = {
     isAnalyze ? new BundleAnalyzerPlugin() : nothing,
     isProduction
       ? new CopyWebpackPlugin({
-        patterns: [
-          { from: './src/static', to: '.' },
-          { from: './public'},
-      ],
-      })
+          patterns: [{ from: './src/static', to: '.' }, { from: './public' }],
+        })
       : nothing,
   ],
 };

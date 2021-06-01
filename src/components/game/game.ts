@@ -50,7 +50,7 @@ export class Game extends BaseComponent {
     };
   }
 
-  initGame(images: string[], start: number, end: number) {
+  initGame(images: string[], start: number, end: number): void {
     this.cardField.clear();
 
     const addCard = images.slice(start, end);
@@ -79,7 +79,7 @@ export class Game extends BaseComponent {
       this.isAnimation = false;
       return;
     }
-    if (this.activeCard.image != card.image) {
+    if (this.activeCard.image !== card.image) {
       await delay(colorDelay);
       card.element.classList.add('unmatch');
       this.activeCard.element.classList.add('unmatch');
@@ -111,3 +111,4 @@ export class Game extends BaseComponent {
     }
   }
 }
+export default Game;

@@ -8,7 +8,10 @@ export class Form implements Component {
 
   private inputs: Input[];
 
-  constructor(private readonly root: HTMLElement, private callback: Function/* , private readonly db: DataBase */) {
+  constructor(
+    private readonly root: HTMLElement,
+    /* private callback: Function */ /* , private readonly db: DataBase */
+  ) {
     // this.callback();
     this.form = document.createElement('form');
   }
@@ -22,3 +25,4 @@ export class Form implements Component {
     return this.form;
   }
 }
+export default Form;

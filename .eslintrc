@@ -29,7 +29,7 @@
         "project": "tsconfig.json"
       },
       "webpack": {
-        "config": "./webpack.config.ts"
+       // "config": "./webpack.config.ts"
       },
       "node": {
         "paths": ["src"]

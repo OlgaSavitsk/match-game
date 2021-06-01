@@ -1,4 +1,5 @@
 import './card-field.scss';
+
 import { BaseComponent } from '../base-component';
 import { Card } from '../card/card';
 
@@ -10,12 +11,12 @@ export class CardField extends BaseComponent {
     super('div', ['card-field']);
   }
 
-  clear() {
+  clear(): void {
     this.cards = [];
     this.element.innerHTML = '';
   }
 
-  addCards(cards: Card[]) {
+  addCards(cards: Card[]): void {
     this.cards = cards;
     this.cards.forEach(card => this.element.appendChild(card.element));
     setTimeout(() => {
@@ -23,3 +24,4 @@ export class CardField extends BaseComponent {
     }, showTime * 1000);
   }
 }
+export default CardField;

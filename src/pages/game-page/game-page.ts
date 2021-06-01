@@ -1,11 +1,11 @@
 import { Component } from 'component';
 
-import { Game } from '../../components/game/game';
-
 import { ImageCategoryModel } from 'models/image-category-model';
 
 import '../pages.scss';
 import { Avatar } from '../../components/avatar/avatar';
+
+import { Game } from '../../components/game/game';
 
 export class GamePage implements Component {
   private readonly gamePage: HTMLElement;
@@ -31,8 +31,7 @@ export class GamePage implements Component {
     return this.gamePage;
   }
 
-  async start() {
-    let index: number;
+  async start(): Promise<void> {
     const response = await fetch('/images.json');
     const categories: ImageCategoryModel[] = await response.json();
 
@@ -50,13 +49,14 @@ export class GamePage implements Component {
     }
     if (lavelCategory === '6x6') {
       const cat = categories[0];
-      const images = cat.images.map((name) => `${cat.category}/${name}`);
+      const images = cat.images.map(name => `${cat.category}/${name}`);
       this.game.initGame(images, 0, 18);
     }
     if (lavelCategory === '6x6') {
       const cat = categories[1];
-      const images = cat.images.map((name) => `${cat.category}/${name}`);
+      const images = cat.images.map(name => `${cat.category}/${name}`);
       this.game.initGame(images, 0, 18);
     }
   }
 }
+export default GamePage;

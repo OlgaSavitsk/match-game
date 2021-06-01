@@ -1,9 +1,9 @@
+import { Component } from '../../component';
 import { Button } from '../../shared/button/button';
+
 import { SettingField } from './setting-field/setting-field';
 
-import { Component } from '../../component';
 import '../pages.scss';
-
 
 export class SettingPage implements Component {
   private readonly settingPage: HTMLElement;

@@ -16,7 +16,7 @@
   }
 
   &.match > .card > .card__front:after {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     height: 100%;
@@ -24,7 +24,7 @@
   }
 
   &.unmatch > .card > .card__front:after {
-    content: "";
+    content: '';
     display: block;
     background: rgba(242, 78, 30, 0.5);
     width: 100%;
@@ -36,10 +36,11 @@
   position: relative;
   width: 155px;
   height: 155px;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
   border-radius: 4px;
   transform-style: preserve-3d;
-  transition: all .5s;
+  transition: all 0.5s;
   transform-origin: right;
 
   &__front,

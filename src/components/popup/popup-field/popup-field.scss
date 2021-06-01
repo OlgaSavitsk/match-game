@@ -12,25 +12,25 @@
   font-size: 14px;
   top: calc(50vh - 60px);
   left: calc(50vw - 188px);
-  background: #FCFCFC;
+  background: #fcfcfc;
   visibility: hidden;
   opacity: 0;
 
-&__text {
-  width: 328px;
-  color: rgba(0, 0, 0, 0.6);
-}
+  &__text {
+    width: 328px;
+    color: rgba(0, 0, 0, 0.6);
+  }
 
   &__button {
     display: flex;
     align-items: center;
     text-align: center;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 10px 16px;
     left: 154px;
     top: 68px;
-    background: #2196F3;
+    background: #2196f3;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
     border-radius: 4px;
     cursor: pointer;
@@ -45,4 +45,3 @@
 .hidden {
   display: none;
 }
-

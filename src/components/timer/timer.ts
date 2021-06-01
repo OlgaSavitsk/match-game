@@ -21,15 +21,15 @@ export class Timer extends BaseComponent {
   screenCount(): void {
     const min: number = Math.floor((secondCount % 3600) / 60);
     const sec = Math.floor(secondCount % 60);
-    const screenMinutes = (min < 10) ? `0${min}` : min;
-    const screenSeconds = (sec < 10) ? `0${sec}` : sec;
+    const screenMinutes = min < 10 ? `0${min}` : min;
+    const screenSeconds = sec < 10 ? `0${sec}` : sec;
     this.element.textContent = `${screenMinutes}:${screenSeconds}`;
     setTimeout(() => {
-      secondCount++;
+      secondCount += 1;
     }, 30000);
   }
 
-  initTimer() {
+  initTimer(): void {
     secondCount = 0;
     this.screenCount();
     this.stopWhatch = setInterval(() => {
@@ -37,14 +37,14 @@ export class Timer extends BaseComponent {
     }, 1000);
   }
 
-  stopTimer() {
+  stopTimer(): void {
     clearInterval(this.stopWhatch);
     const popupfield = document.querySelector('.pop-up') as HTMLElement;
-    this.popupField.element.textContent = `
-        Congratulations! You successfully found all matches on ${this.element.textContent} minutes.`;
+    this.popupField.element.textContent = `Congratulations! You successfully found all matches on ${this.element.textContent} minutes.`;
     this.popupButton = new PopupButton();
     popupfield.appendChild(this.popupButton.element).onclick = () => {
       popupfield.classList.add('hidden');
     };
   }
 }
+export default Timer;

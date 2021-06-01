@@ -15,7 +15,7 @@ export class FormContainer implements Component {
 
   render(): HTMLElement {
     this.root.appendChild(this.formContainer);
-    this.formContainer.appendChild(new Form(this.formContainer, this.onValidate).render());
+    this.formContainer.appendChild(new Form(this.formContainer).render());
     this.formContainer.appendChild(new FormAvatar(this.formContainer).render());
     return this.formContainer;
   }
