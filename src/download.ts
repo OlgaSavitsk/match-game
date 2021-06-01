@@ -1,11 +1,6 @@
-// save with canvas
-const canvas = document.createElement('canvas');
-const download = document.querySelector('.form__button_disabled');
-const imageContainer = document.querySelector('img') as HTMLImageElement;
-const cancel = document.querySelector('form__button_disabled');
-
+// const imageContainer = document.querySelector('img') as HTMLImageElement;
+/*
 const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-const image = imageContainer;
 
 fileInput.addEventListener('change', e => {
   // const fileInputa = fileInput as HTMLInputElement
@@ -17,9 +12,9 @@ fileInput.addEventListener('change', e => {
   const reader = new FileReader();
   reader.onload = () => {
     const img = new Image();
-    // imageContainer.src = reader.result;
+    imageContainer.src = reader.result;
     imageContainer.innerHTML = '';
     imageContainer?.append(img);
   };
-  // reader.readAsDataURL(file);
-});
+  reader.readAsDataURL(file);
+}); */

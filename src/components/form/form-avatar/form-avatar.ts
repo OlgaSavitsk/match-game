@@ -22,3 +22,4 @@ export class FormAvatar implements Component {
     return this.formAvatar;
   }
 }
+export default FormAvatar;
