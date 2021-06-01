@@ -48,15 +48,15 @@ export class GamePage implements Component {
       const images = cat.images.map(name => `${cat.category}/${name}`);
       this.game.initGame(images, 0, 8);
     }
-/*     if (lavelCategory === '4x4') {
-      const cat = categories[0];
-      const images = cat.images.map((name) => `${cat.category}/${name}`);
-      this.game.initGame(images, 0, 8);
-    } */
-/*     if (lavelCategory === '6x6') {
+    if (lavelCategory === '6x6') {
       const cat = categories[0];
       const images = cat.images.map((name) => `${cat.category}/${name}`);
       this.game.initGame(images, 0, 18);
-    } */
+    }
+    if (lavelCategory === '6x6') {
+      const cat = categories[1];
+      const images = cat.images.map((name) => `${cat.category}/${name}`);
+      this.game.initGame(images, 0, 18);
+    }
   }
 }
