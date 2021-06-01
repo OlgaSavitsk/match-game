@@ -1,7 +1,6 @@
 import './button.scss';
 import { BaseComponent } from '../../components/base-component';
 
-
 export class Button extends BaseComponent {
   readonly button: HTMLButtonElement;
 
@@ -14,3 +13,5 @@ export class Button extends BaseComponent {
   `;
   }
 }
+
+export default Button;

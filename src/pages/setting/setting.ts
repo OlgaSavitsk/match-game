@@ -1,12 +1,15 @@
+import { Button } from '../../shared/button/button';
 import { SettingField } from './setting-field/setting-field';
+
 import { Component } from '../../component';
 import '../pages.scss';
-import { Button } from '../../shared/button/button';
 
 
 export class SettingPage implements Component {
   private readonly settingPage: HTMLElement;
+
   private settingField: SettingField;
+
   private button: Button;
 
   constructor(private readonly root: HTMLElement) {
@@ -25,3 +28,4 @@ export class SettingPage implements Component {
     return this.settingPage;
   }
 }
+export default SettingPage;

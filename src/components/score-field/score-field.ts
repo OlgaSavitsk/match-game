@@ -5,7 +5,6 @@ import { ScoreList } from '../score-list/score-list';
 export class ScoreField implements Component {
   private readonly scoreField: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.scoreField = document.createElement('div');
     this.scoreField.classList.add('score-field');

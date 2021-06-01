@@ -4,7 +4,6 @@ import { Component } from '../../component';
 export class RuleStart implements Component {
   private readonly ruleStart: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.ruleStart = document.createElement('div');
     this.ruleStart.classList.add('rules__block_start');

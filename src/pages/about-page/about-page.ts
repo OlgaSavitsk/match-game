@@ -1,13 +1,14 @@
 import '../pages.scss';
 import { Component } from 'component';
+
 import { AboutField } from '../../components/about-field/about-field';
 import { FormRegistr } from '../../components/form/form-registr';
-import { ButtonRegistr } from '../../shared/button/button-registr';
 import { Button } from '../../shared/button/button';
-
+import { ButtonRegistr } from '../../shared/button/button-registr';
 
 export class AboutPage implements Component {
   private readonly aboutPage: HTMLElement;
+
   private button: Button;
 
   constructor(private readonly root: HTMLElement) {
@@ -27,5 +28,5 @@ export class AboutPage implements Component {
       <a class="button__link" href="#game">START GAME</a>
     `;
     return this.aboutPage;
-}
+  }
 }

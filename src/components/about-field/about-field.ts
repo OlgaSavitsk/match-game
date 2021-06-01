@@ -5,7 +5,6 @@ import { AboutContainer } from '../about-container/about-container';
 export class AboutField implements Component {
   private readonly aboutField: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.aboutField = document.createElement('div');
     this.aboutField.classList.add('game-field');

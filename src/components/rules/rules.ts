@@ -2,7 +2,6 @@ import './rules.scss';
 import { Component } from '../../component';
 import { RuleStart } from '../rule-start/rule-start';
 
-
 export class Rules implements Component {
   private readonly rules: HTMLElement;
 
@@ -24,7 +23,7 @@ export class Rules implements Component {
 
   render(): HTMLElement {
     this.root.appendChild(this.rules);
-    this.rules.appendChild(new RuleStart(this.rules).render())
+    this.rules.appendChild(new RuleStart(this.rules).render());
     return this.rules;
   }
 }

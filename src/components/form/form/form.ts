@@ -1,11 +1,12 @@
 import './form.scss';
 import { Component } from '../../../component';
+
 import { Input } from './input';
 
 export class Form implements Component {
   private form: HTMLElement;
-  private inputs: Input[];
 
+  private inputs: Input[];
 
   constructor(private readonly root: HTMLElement, private callback: Function/* , private readonly db: DataBase */) {
     // this.callback();

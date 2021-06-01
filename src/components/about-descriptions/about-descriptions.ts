@@ -1,10 +1,9 @@
 import './about-descriptions.scss';
-import { Rules } from '../rules/rules';
 import { Component } from '../../component';
+import { Rules } from '../rules/rules';
 
 export class AboutDescriptions implements Component {
   private readonly aboutDescriptions: HTMLElement;
-
 
   constructor(private readonly root: HTMLElement) {
     this.aboutDescriptions = document.createElement('div');

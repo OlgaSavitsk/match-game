@@ -4,7 +4,6 @@ import { Component } from '../../../component';
 export class SelectBlockCard implements Component {
   private readonly selectBlockCard: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.selectBlockCard = document.createElement('div');
     this.selectBlockCard.classList.add('selected__block');

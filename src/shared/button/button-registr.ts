@@ -4,8 +4,6 @@ import { Component } from '../../component';
 export class ButtonRegistr implements Component {
   readonly buttonRegistr: HTMLButtonElement;
 
-
-
   constructor(private readonly root: HTMLElement) {
     this.buttonRegistr = document.createElement('button');
     this.buttonRegistr.classList.add('button-registr');

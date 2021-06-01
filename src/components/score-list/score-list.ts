@@ -4,7 +4,6 @@ import { Component } from '../../component';
 export class ScoreList implements Component {
   private readonly scoreList: HTMLElement;
 
-
   constructor(private readonly root: HTMLElement) {
     this.scoreList = document.createElement('ul');
     this.scoreList.classList.add('score__list');

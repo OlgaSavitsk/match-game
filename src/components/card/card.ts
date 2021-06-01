@@ -1,11 +1,12 @@
 import './card.scss';
-import { BaseComponent } from "../base-component";
+import { BaseComponent } from '../base-component';
 
 const flipClass = 'flipped';
 
 export class Card extends BaseComponent {
-isFlipped: boolean = false;
-isConcided: boolean = false;
+  isFlipped = false;
+
+  isConcided = false;
 
   constructor(readonly image: string) {
     super('div', ['card-container']);

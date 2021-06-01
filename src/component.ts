@@ -1,4 +1,4 @@
-import { type } from "os";
+import { type } from 'os';
 
 export interface Component {
   render (): HTMLElement;

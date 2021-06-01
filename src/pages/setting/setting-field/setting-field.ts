@@ -5,8 +5,11 @@ import { SelectBlockLavel } from '../select-block/select-lavel';
 
 export class SettingField implements Component {
   private readonly settingField: HTMLElement;
+
   private selectBlockCard: SelectBlockCard;
+
   private selectBlockLavel: SelectBlockLavel;
+
   public settingAr: string;
 
   constructor(private readonly root: HTMLElement) {
@@ -21,11 +24,11 @@ export class SettingField implements Component {
     if (!selectCard) throw Error('App root element not found');
     if (!selectLavel) throw Error('App root element not found');
     selectCard.addEventListener('change', () => {
-    localStorage.setItem('card-category', selectCard.value);
-    })
+      localStorage.setItem('card-category', selectCard.value);
+    });
     selectLavel.addEventListener('change', () => {
-    localStorage.setItem('lavel-category', selectLavel.value);
-     })
+      localStorage.setItem('lavel-category', selectLavel.value);
+    });
   }
 
   render() {

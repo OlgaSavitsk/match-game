@@ -1,16 +1,22 @@
 import { Component } from 'component';
+
 import { Game } from '../../components/game/game';
+
 import { ImageCategoryModel } from 'models/image-category-model';
+
 import '../pages.scss';
 import { Avatar } from '../../components/avatar/avatar';
 
 export class GamePage implements Component {
   private readonly gamePage: HTMLElement;
-  private game: Game;
-  private avatar: Avatar;
-  private images: string[]
 
-  constructor (private readonly root: HTMLElement) {
+  private game: Game;
+
+  private avatar: Avatar;
+
+  private images: string[];
+
+  constructor(private readonly root: HTMLElement) {
     this.gamePage = document.createElement('div');
     this.gamePage.classList.add('game-page');
   }
@@ -25,35 +31,35 @@ export class GamePage implements Component {
     return this.gamePage;
   }
 
-    async start() {
-     let index: number;
+  async start() {
+    let index: number;
     const response = await fetch('/images.json');
     const categories: ImageCategoryModel[] = await response.json();
 
-    let cardCategory = localStorage.getItem('card-category');
-    let lavelCategory = localStorage.getItem('lavel-category');
-    if(cardCategory === 'animals'){
+    const cardCategory = localStorage.getItem('card-category');
+    const lavelCategory = localStorage.getItem('lavel-category');
+    if (cardCategory === 'animals') {
+      const cat = categories[0];
+      const images = cat.images.map(name => `${cat.category}/${name}`);
+    }
+    if (cardCategory === 'birds') {
+      const cat = categories[1];
+      const images = cat.images.map(name => `${cat.category}/${name}`);
+    }
+    if (lavelCategory === '4x4') {
       const cat = categories[0];
       const images = cat.images.map((name) => `${cat.category}/${name}`);
-      //this.game.initGame(images, 0, 8);
+      this.game.initGame(images, 0, 8);
     }
-    if(cardCategory === 'birds') {
+    if (lavelCategory === '4x4') {
       const cat = categories[1];
       const images = cat.images.map((name) => `${cat.category}/${name}`);
-      //this.game.initGame(images, 0, 8);
+      this.game.initGame(images, 0, 8);
     }
-    const cat = categories[0] || categories[1];
-    const images = cat.images.map((name) => `${cat.category}/${name}`);
-  if (lavelCategory === '4x4') {
-    //const cat = categories[0];
-    //const images = cat.images.map((name) => `${cat.category}/${name}`);
-    this.game.initGame(images, 0, 8);
-    }
-  if(lavelCategory === '6x6') {
-    this.game.element.style.width = '1175px'
-    //const cat = categories[0];
-    //const images = cat.images.map((name) => `${cat.category}/${name}`);
-    this.game.initGame(images, 0, 18);
+    if (lavelCategory === '6x6') {
+      const cat = categories[0];
+      const images = cat.images.map((name) => `${cat.category}/${name}`);
+      this.game.initGame(images, 0, 18);
     }
   }
 }

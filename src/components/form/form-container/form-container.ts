@@ -3,9 +3,9 @@ import { Component } from '../../../component';
 import { FormAvatar } from '../form-avatar/form-avatar';
 import { Form } from '../form/form';
 
-
 export class FormContainer implements Component {
   private readonly formContainer: HTMLElement;
+
   onValidate: Function;
 
   constructor(private readonly root: HTMLElement) {
