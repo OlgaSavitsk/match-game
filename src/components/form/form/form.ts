@@ -9,12 +9,10 @@ export class Form implements Component {
   private inputs: Input[];
 
   constructor(
-    private readonly root: HTMLElement,
-    /* private callback: Function */ /* , private readonly db: DataBase */
-  ) {
-    // this.callback();
+    private readonly root: HTMLElement) {
     this.form = document.createElement('form');
   }
+
 
   render(): HTMLElement {
     this.root.appendChild(this.form);

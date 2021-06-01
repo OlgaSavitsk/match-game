@@ -1,6 +1,7 @@
 import './form.scss';
 import { Component } from '../../../component';
-const buttonadd = document.querySelector('.form__button_colored');
+
+//const buttonadd = document.querySelector('.form__button_colored');
 export class Input implements Component {
   private readonly field: HTMLInputElement;
 
@@ -8,20 +9,21 @@ export class Input implements Component {
 
   private readonly error: HTMLElement;
 
-  public regEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/gi;
+  public regEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/ig;
 
-  public regName = /^[a-zа-я0-9_-]{2,16}$/gi;
+  public regName = /^[a-zа-я0-9_-]{2,30}$/i;
 
   public regNumber = /^\d{1,}$/gi;
 
   name: string;
+onInput: () => void =() => {};
 
   constructor(
     private readonly root: HTMLElement,
     placeholder: string,
     name: string,
-    text: string
-  ) {
+    text: string,
+  )  {
     this.field = document.createElement('input');
     this.field.placeholder = placeholder;
     this.caption = document.createElement('label');
@@ -31,43 +33,48 @@ export class Input implements Component {
     this.field.addEventListener('input', () => {
       if (this.onValidate) {
         this.setError(this.onValidate(this.getValue()));
+        console.log(this.name)
       }
+      if(this.onInput) {
+        this.onInput();
+      }
+
     });
   }
 
-  onValidate(value: string): string {
+  onValidate(value: string) {
     if (this.name === 'email') {
-      return this.regEmail.exec(this.field.value) ? 'ok' : 'Error';
+      return (this.regEmail.test(this.field.value)) ? 'ok' : 'Error';
     }
     if (this.field.value.length === 0) {
       return 'Field cannot be empty';
-      buttonadd?.setAttribute('disabled', 'disabled');
+      //buttonadd?.setAttribute('disabled', 'disabled');
     }
     if (/\s/i.exec(this.field.value)) {
       return 'The name cannot contain more than one word';
     }
     if (this.regNumber.exec(this.field.value)) {
       return 'The name cannot be numbers';
+    } else {
+      return (this.regName.exec(this.field.value)) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
     }
-    return this.regName.exec(this.field.value)
-      ? 'ok'
-      : 'Field cannot consist of one symbal or contain the marks';
+
   }
 
-  getValue(): string {
+  getValue() {
     return this.field.value;
   }
 
-  setError(err: string | null): void {
-   // const buttonadd = document.querySelector('.form__button_colored');
+  setError(err: string | null) {
     this.error.textContent = err;
     this.field.classList.add('invalid');
     this.field.classList.remove('valid');
-    buttonadd?.setAttribute('disabled', 'disabled');
+   // buttonadd?.setAttribute('disabled', 'disabled');
     if (err === 'ok') {
+      this.error.innerHTML = 'ok';
       this.field.classList.remove('invalid');
       this.field.classList.add('valid');
-      buttonadd?.removeAttribute('disabled');
+      //buttonadd?.removeAttribute('disabled');
     }
   }
 

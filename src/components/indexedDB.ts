@@ -1,31 +1,40 @@
-export class DataBase {
-  public db: IDBDatabase | null;
+import Input from "./form/form/input";
 
-  // private database: IDBDatabase
+/* const user {
+
+} */
+export class DataBase {
+  public input: Input;
+  public db: IDBDatabase | null;
+  constructor() {
+    this.db = null;
+  }
 
   init(dbName: string) {
     const iDB = window.indexedDB;
     const openRequest = iDB.open('olgasav');
     openRequest.onupgradeneeded = () => {
-      const database = openRequest.result;
-      const store = database.createObjectStore('users', { keyPath: 'id', autoIncrement: true });
+      const db = openRequest.result;
+      const store = db.createObjectStore('users', { keyPath: 'id', autoIncrement: true });
       store.createIndex('name', 'name');
       store.createIndex('surname', 'surname');
       store.createIndex('email', 'email', { unique: true });
       store.createIndex('score', 'total');
-      this.db = database;
     };
     openRequest.onsuccess = () => {
       this.db = openRequest.result;
-      // this.write()
+      this.write()
+      this.readAll()
     };
   }
 
-  write() {
-    // if (!this.db) throw Error('db root element not found');
-    const transaction = this.db!.transaction('users', 'readwrite');
+   write() {
+    if(!this.db) {
+      throw Error('db not found');
+    }
+    const transaction = this.db.transaction('users', 'readwrite');
     const store = transaction.objectStore('users');
-    const result = store?.add({ name: 'name', surname: 'surname', email: 'mail'});
+    const result = store.put({ name: this.input.getValue, surname: this.input.getValue, email: 'mail2'});
     result.onsuccess = () => {
       console.log('complete', result?.result);
     };
@@ -38,8 +47,8 @@ export class DataBase {
   }
 
   readAll() {
-    // if (!this.db) throw Error('db root element not found');
-    const transaction = this.db!.transaction('users', 'readonly');
+    if (!this.db) throw Error('db not found');
+    const transaction = this.db.transaction('users', 'readonly');
     const store = transaction.objectStore('users');
     const result = store.getAll();
     transaction.oncomplete = () => {
@@ -69,8 +78,8 @@ export class DataBase {
   }
 }
 
-const iDB = new DataBase();
-export default iDB;
+const db = new DataBase();
+export default db;
 
 /*  const iDB = window.indexedDB;
   let database: IDBDatabase | null = null;

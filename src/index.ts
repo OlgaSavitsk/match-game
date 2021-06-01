@@ -17,7 +17,7 @@ window.onload = () => {
   if (!appElement) throw Error('App root element not found');
   new Header(appElement).render();
   new App(appElement).render();
-  new DataBase().init('olgasav');
+ // new DataBase().init('olgasav');
 };
 
 window.onpopstate = () => {

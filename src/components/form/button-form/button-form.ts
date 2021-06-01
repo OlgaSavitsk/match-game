@@ -10,26 +10,21 @@ const buttonadd = document.querySelector('.form__button_colored');
 export class ButtonForm implements Component {
   private readonly buttonForm: HTMLElement;
 
-  public iDB: DataBase;
+  public db: DataBase;
 
   private buttonAdd: ButtonAdd;
 
   constructor(private readonly root: HTMLElement /* , private readonly db: DataBase */) {
     this.buttonForm = document.createElement('div');
     this.buttonForm.classList.add('form__button');
-    this.iDB = new DataBase();
-    //let buttonAdd = new ButtonAdd();
-    buttonadd?.addEventListener('click', () => {
-      this.iDB.write();
-      console.log('bd')
-    })
+    this.db = new DataBase();
   }
 
   render(): HTMLElement {
     this.root.appendChild(this.buttonForm);
     this.buttonForm.appendChild(new ButtonAdd(this.buttonForm).render()).onclick = () => {
-      this.iDB.write();
-      console.log('bd')
+     this.db.init('olgasav');
+      console.log('bd1')
 
     };
     this.buttonForm.appendChild(new ButtonCancel(this.buttonForm).render());
