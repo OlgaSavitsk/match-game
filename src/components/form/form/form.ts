@@ -7,6 +7,7 @@ export class Form implements Component {
   private form: HTMLElement;
 
   private inputs: Input[];
+  onValidate: string | (() => boolean) | undefined;
 
   constructor(
     private readonly root: HTMLElement) {
@@ -16,9 +17,9 @@ export class Form implements Component {
 
   render(): HTMLElement {
     this.root.appendChild(this.form);
-    this.form.appendChild(new Input(this.form, 'Jessie', 'username', 'First Name').render()),
-    this.form.append(new Input(this.form, 'Doe', 'surname', 'Last Name').render()),
-    this.form.append(new Input(this.form, 'Jessie.Doe@gmail.com', 'email', 'E-mail').render());
+    this.form.appendChild(new Input(this.form, 'Jessie', 'username', 'First Name', this.onValidate).render()),
+    this.form.append(new Input(this.form, 'Doe', 'surname', 'Last Name', this.onValidate).render()),
+    this.form.append(new Input(this.form, 'Jessie.Doe@gmail.com', 'email', 'E-mail', this.onValidate).render());
 
     return this.form;
   }

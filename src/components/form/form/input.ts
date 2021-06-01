@@ -9,9 +9,9 @@ export class Input implements Component {
 
   private readonly error: HTMLElement;
 
-  public regEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/ig;
+  public regEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-  public regName = /^[a-zа-я0-9_-]{2,30}$/i;
+  public regName = /^[a-zа-я0-9_-]{2,30}$/gi;
 
   public regNumber = /^\d{1,}$/gi;
 
@@ -23,6 +23,7 @@ onInput: () => void =() => {};
     placeholder: string,
     name: string,
     text: string,
+    onValidate: string | (() => boolean) | undefined
   )  {
     this.field = document.createElement('input');
     this.field.placeholder = placeholder;
@@ -42,23 +43,22 @@ onInput: () => void =() => {};
     });
   }
 
-  onValidate(value: string) {
-    if (this.name === 'email') {
-      return (this.regEmail.test(this.field.value)) ? 'ok' : 'Error';
+  onValidate(value: string): string{
+    if( this.field.name == 'email'){
+      return  this.field.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i) ? 'ok' : 'Error';
     }
-    if (this.field.value.length === 0) {
-      return 'Field cannot be empty';
+    if(this.field.value.length === 0) {
       buttonadd?.setAttribute('disabled', 'disabled');
+      return 'Field cannot be empty';
     }
-    if (/\s/i.exec(this.field.value)) {
-      return 'The name cannot contain more than one word';
+    if(this.field.value.match(/\s/i)){
+      return  'The name cannot contain more than one word';
     }
-    if (this.regNumber.exec(this.field.value)) {
-      return 'The name cannot be numbers';
+    if(this.field.value.match(this.regNumber)){
+      return  'The name cannot be numbers';
     } else {
-      return (this.regName.exec(this.field.value)) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
+      return this.field.value.match(this.regName) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
     }
-
   }
 
   getValue() {
