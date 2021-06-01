@@ -25,7 +25,7 @@ export class Timer extends BaseComponent {
     const screenSeconds = sec < 10 ? `0${sec}` : sec;
     this.element.textContent = `${screenMinutes}:${screenSeconds}`;
     setTimeout(() => {
-      secondCount += 1;
+      secondCount++;
     }, 30000);
   }
 
