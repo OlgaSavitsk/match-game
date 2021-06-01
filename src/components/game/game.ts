@@ -97,7 +97,7 @@ export class Game extends BaseComponent {
     this.activeCard = undefined;
     this.isAnimation = false;
     const lavelCategory = localStorage.getItem('lavel-category');
-    if (lavelCategory === '4x4' && this.openCards.length === 8) {
+    if (lavelCategory === '4x4' && this.openCards.length === 2) {
       this.timer.stopTimer();
       await delay(colorDelay);
       this.popupCover.element.classList.add('show');

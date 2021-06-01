@@ -25,7 +25,7 @@ export class DataBase {
     // if (!this.db) throw Error('db root element not found');
     const transaction = this.db!.transaction('users', 'readwrite');
     const store = transaction.objectStore('users');
-    const result = store?.add({ name: 'nam', surname: 'sam', email: 'esm' });
+    const result = store?.add({ name: 'name', surname: 'surname', email: 'mail'});
     result.onsuccess = () => {
       console.log('complete', result?.result);
     };
@@ -69,8 +69,8 @@ export class DataBase {
   }
 }
 
-const db = new DataBase();
-export default db;
+const iDB = new DataBase();
+export default iDB;
 
 /*  const iDB = window.indexedDB;
   let database: IDBDatabase | null = null;

@@ -1,6 +1,6 @@
 import './form.scss';
 import { Component } from '../../../component';
-
+const buttonadd = document.querySelector('.form__button_colored');
 export class Input implements Component {
   private readonly field: HTMLInputElement;
 
@@ -20,9 +20,8 @@ export class Input implements Component {
     private readonly root: HTMLElement,
     placeholder: string,
     name: string,
-    text: string, /* , private callback: Function */
-  ) /* onValidate: string | (() => boolean) | undefined) */ {
-    // this.callback()
+    text: string
+  ) {
     this.field = document.createElement('input');
     this.field.placeholder = placeholder;
     this.caption = document.createElement('label');
@@ -42,6 +41,7 @@ export class Input implements Component {
     }
     if (this.field.value.length === 0) {
       return 'Field cannot be empty';
+      buttonadd?.setAttribute('disabled', 'disabled');
     }
     if (/\s/i.exec(this.field.value)) {
       return 'The name cannot contain more than one word';
@@ -59,7 +59,7 @@ export class Input implements Component {
   }
 
   setError(err: string | null): void {
-    const buttonadd = document.querySelector('.form__button_colored');
+   // const buttonadd = document.querySelector('.form__button_colored');
     this.error.textContent = err;
     this.field.classList.add('invalid');
     this.field.classList.remove('valid');
