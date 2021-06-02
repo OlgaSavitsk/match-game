@@ -17,9 +17,9 @@ export class Form implements Component {
 
   render(): HTMLElement {
     this.root.appendChild(this.form);
-    this.form.appendChild(new Input(this.form, 'Jessie', 'username', 'First Name', this.onValidate).render()),
-    this.form.append(new Input(this.form, 'Doe', 'surname', 'Last Name', this.onValidate).render()),
-    this.form.append(new Input(this.form, 'Jessie.Doe@gmail.com', 'email', 'E-mail', this.onValidate).render());
+    this.form.appendChild(new Input(this.form, 'Jessie', 'username', 'First Name', 'text', this.onValidate).render()),
+    this.form.append(new Input(this.form, 'Doe', 'surname', 'Last Name', 'text', this.onValidate).render()),
+    this.form.append(new Input(this.form, 'Jessie.Doe@gmail.com', 'email', 'E-mail', 'email', this.onValidate).render());
 
     return this.form;
   }
