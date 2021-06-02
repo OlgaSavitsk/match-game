@@ -40,7 +40,7 @@ export class GamePage implements Component {
     if (cardCategory === 'animals') {
       const cat = categories[0];
       const images = cat.images.map(name => `${cat.category}/${name}`);
-      this.game.initGame(images, 0, 2);
+      this.game.initGame(images, 0, 8);
     }
     if (cardCategory === 'birds') {
       const cat = categories[1];

@@ -16,8 +16,8 @@ export class Input implements Component {
   public regNumber = /^\d{1,}$/gi;
 
   name: string;
-onInput: () => void =() => {};
-validate: (() => boolean);
+
+  onInput: () => void =() => {};
 
   constructor(
     private readonly root: HTMLElement,
@@ -47,7 +47,7 @@ validate: (() => boolean);
   }
 
   onValidate(value: string): string {
-    if( this.name == 'email'){
+    if( this.name === 'email'){
       return  this.field.value.match(this.regEmail) ? 'ok' : 'Error';
     }
     if(this.field.value.length === 0) {
@@ -63,11 +63,11 @@ validate: (() => boolean);
     }
   }
 
-  getValue() {
+  getValue(): string  {
     return this.field.value;
   }
 
-  setError(err: string | null) {
+  setError(err: string | null): void {
     this.error.textContent = err;
     this.field.classList.add('invalid');
     this.field.classList.remove('valid');
