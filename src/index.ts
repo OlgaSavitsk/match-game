@@ -7,8 +7,6 @@ import { GamePage } from './pages/game-page/game-page';
 import { ScorePage } from './pages/score/score';
 import { SettingPage } from './pages/setting/setting';
 
-const db = new DataBase();
-
 const appElement: HTMLElement | null = document.getElementById('app');
 if (!appElement) throw Error('App root element not found');
 
@@ -17,7 +15,6 @@ window.onload = () => {
   if (!appElement) throw Error('App root element not found');
   new Header(appElement).render();
   new App(appElement).render();
- // new DataBase().init('olgasav');
 };
 
 window.onpopstate = () => {

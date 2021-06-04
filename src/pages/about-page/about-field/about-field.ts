@@ -1,5 +1,5 @@
 import './about-field.scss';
-import { Component } from '../../component';
+import { Component } from '../../../components/component';
 import { AboutContainer } from '../about-container/about-container';
 
 export class AboutField implements Component {

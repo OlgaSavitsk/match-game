@@ -1,5 +1,5 @@
 import './button-form.scss';
-import { Component } from '../../../component';
+import { Component } from '../../component';
 
 export class ButtonAdd implements Component {
   private readonly buttonAdd: HTMLElement;

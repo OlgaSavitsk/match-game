@@ -1,18 +1,33 @@
-import Input from "./form/form/input";
-
-/* const user {
-
-} */
+interface MyRecord {
+  name: string;
+  surname: string;
+  email: string;
+  id?: IDBValidKey;
+}
 export class DataBase {
-  public input: Input;
-  public db: IDBDatabase | null;
-  constructor() {
-    this.db = null;
-  }
+  inputName = document.getElementsByTagName('input')[0] ;
 
-  init(dbName: string) {
+  inputSurname = document.getElementsByTagName('input')[1] ;
+
+  inputEmail = document.getElementsByTagName('input')[2] ;
+
+  scoreList = document.getElementById('scorelist') as HTMLUListElement;
+
+  usernameValue: string;
+
+  surnameValue: string;
+
+  emailValue: string;
+
+  public db: IDBDatabase;
+
+  name: string;
+
+  email: string;
+
+  async init(dbName: string, version: number) {
     const iDB = window.indexedDB;
-    const openRequest = iDB.open('olgasav');
+    const openRequest = iDB.open('olgasav', 2);
     openRequest.onupgradeneeded = () => {
       const db = openRequest.result;
       const store = db.createObjectStore('users', { keyPath: 'id', autoIncrement: true });
@@ -21,59 +36,68 @@ export class DataBase {
       store.createIndex('email', 'email', { unique: true });
       store.createIndex('score', 'total');
     };
-    openRequest.onsuccess = () => {
+    openRequest.onsuccess = async () => {
       this.db = openRequest.result;
-      this.write()
-      this.readAll()
+      await this.write('users');
     };
   }
 
-   write() {
-    if(!this.db) {
-      throw Error('db not found');
-    }
-    const transaction = this.db.transaction('users', 'readwrite');
-    const store = transaction.objectStore('users');
-    const result = store.put({ name: this.input.getValue, surname: this.input.getValue, email: 'mail2'});
-    result.onsuccess = () => {
-      console.log('complete', result?.result);
+  async initScore(dbName: string, version: number) {
+    const iDB = window.indexedDB;
+    const openRequest = iDB.open('olgasav', 2);
+    openRequest.onupgradeneeded = () => {
+      const db = openRequest.result;
+      const store = db.createObjectStore('users', { keyPath: 'id', autoIncrement: true });
+      store.createIndex('name', 'name');
+      store.createIndex('surname', 'surname');
+      store.createIndex('email', 'email', { unique: true });
+      store.createIndex('score', 'total');
     };
-    transaction.onerror = () => {
-      console.log('error', result.error);
-    };
-    transaction.onabort = () => {
-      console.log('abort');
-    };
-  }
-
-  readAll() {
-    if (!this.db) throw Error('db not found');
-    const transaction = this.db.transaction('users', 'readonly');
-    const store = transaction.objectStore('users');
-    const result = store.getAll();
-    transaction.oncomplete = () => {
-      console.log(result.result);
+    openRequest.onsuccess = async () => {
+      this.db = openRequest.result;
+      await this.readFilter('users');
     };
   }
 
-  readFilter() {
-    // if (!this.db) throw Error('db root element not found');
-    const transaction = this.db!.transaction('users', 'readonly');
+  async readAll(collection: string) {
+    const tx = this.db.transaction('users');
+    const store = tx.objectStore('users');
+    const users = await store.getAll();
+    tx.oncomplete = () => {
+    };
+  }
+
+  async write(collection: string) {
+    const inputNameValue = this.inputName.value;
+    const inputSurnameValue = this.inputSurname.value;
+    const inputEmailValue = this.inputEmail.value;
+    const userData = {
+      name: inputNameValue,
+      surname: inputSurnameValue,
+      email: inputEmailValue,
+      score: 0,
+    };
+    try {
+      await this.db.transaction('users', 'readwrite')
+        .objectStore('users')
+        .put(userData);
+    } catch { }
+  }
+
+  async readFilter(collection: string) {
+    const scoreList = document.querySelector('.score-field') as HTMLElement;
+
+    const transaction = await this.db.transaction('users');
     const store = transaction.objectStore('users');
-    const resData: Array<any> = [];
-    const result = store.index('email').openCursor(null, 'next');
+    const result = store.openCursor(null, 'next');
     result.onsuccess = () => {
       const cursor = result.result;
       if (cursor) {
-        console.log(cursor.value);
-        if (cursor.value.email[0] === 'a') {
-          resData.push(cursor.value);
-        }
-        cursor.continue();
+        scoreList.innerHTML += `<ul id ="scorelist" class="score__list"><li class="score__avatar"></li><li class="score__name" data-key="${cursor.value.id}">${cursor.value.name}  ${cursor.value.surname}</li>
+           <li class="score__email">${cursor.value.email}</li></ul>`;
+
+        cursor.continue('error');
       }
-    };
-    transaction.oncomplete = () => {
-      console.log(resData);
     };
   }
 }
@@ -81,75 +105,4 @@ export class DataBase {
 const db = new DataBase();
 export default db;
 
-/*  const iDB = window.indexedDB;
-  let database: IDBDatabase | null = null;
-
-  let openRequest = iDB.open('olgasav');
-  openRequest.onupgradeneeded = () => {
-    let database = openRequest.result;
-    console.log('running')
-    let store = database.createObjectStore('users', {keyPath: 'id', autoIncrement: true});
-    store.createIndex('name', 'name');
-    store.createIndex('surname', 'surname');
-    store.createIndex('email', 'email', {unique: true});
-    store.createIndex('score', 'total');
-  }
-
-  openRequest.onsuccess = () => {
-    database = openRequest.result;
-    let transaction = database.transaction('users', 'readwrite')
-    let store = transaction.objectStore('users');
-    let result = store.add({name: 'name', surname: 'surname', email: 'emaila', score: '45'});
-    transaction.oncomplete = () => {
-      console.log('complete',result.result);
-    }
-    transaction.onerror = () => {
-      console.log('error', result.error);
-    }
-    transaction.onabort = () => {
-      console.log('abort');
-    }
-  } */
-
-/* let el = document.createElement('button');
-el.textContent ='list';
-document.body.append(el);
-el.onclick = () => {
-  let transaction = database!.transaction('users', 'readonly');
-      let store = transaction.objectStore('users');
-      let result =store. getAll();
-
-      transaction.oncomplete = () => {
-        console.log(result.result)
-      }
-}
-
-let elem = document.createElement('button');
-elem.textContent ='filter';
-document.body.append(elem);
-elem.onclick = () => {
-
-  let transaction = database!.transaction('users', 'readonly');
-      let store = transaction.objectStore('users');
-      let result =store.index('email').openCursor(null, 'next');
-      let resData: Array<any> = []
-
-      result.onsuccess = () => {
-
-  let cursor = result.result;
-
-  if(cursor) {
-    console.log(cursor.value)
-    cursor.continue();
-  }
-
-  if(cursor?.value.email[0] == 'e') {
-    resData.push(cursor?.value)
-  }
-}
-      transaction.oncomplete = () => {
-        console.log(result.result)
-      }
-}
- */
 // let deleteRequest = indexedDB.deleteDatabase('olgasav')

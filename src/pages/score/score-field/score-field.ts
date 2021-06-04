@@ -1,9 +1,9 @@
 import './score-field.scss';
-import { Component } from '../../component';
+import { Component } from '../../../components/component';
 import { ScoreList } from '../score-list/score-list';
 
 export class ScoreField implements Component {
-  private readonly scoreField: HTMLElement;
+  private scoreField: HTMLElement;
 
   constructor(private readonly root: HTMLElement) {
     this.scoreField = document.createElement('div');

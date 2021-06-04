@@ -1,5 +1,5 @@
 import './form.scss';
-import { Component } from '../../component';
+import { Component } from '../component';
 import { PopupCover } from '../popup/popup-cover/popup-cover';
 
 import { ButtonForm } from './button-form/button-form';

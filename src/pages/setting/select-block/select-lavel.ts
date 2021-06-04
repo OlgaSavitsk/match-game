@@ -1,5 +1,5 @@
 import '../setting.scss';
-import { Component } from '../../../component';
+import { Component } from '../../../components/component';
 
 export class SelectBlockLavel implements Component {
   private readonly selectBlockLavel: HTMLElement;

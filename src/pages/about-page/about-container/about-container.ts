@@ -1,7 +1,7 @@
 import './about-container.scss';
-import { Component } from '../../component';
+import { Component } from '../../../components/component';
 import { AboutDescriptions } from '../about-descriptions/about-descriptions';
-import { Rules } from '../rules/rules';
+import { Rules } from '../../../components/rules/rules';
 
 export class AboutContainer implements Component {
   private readonly aboutContainer: HTMLElement;

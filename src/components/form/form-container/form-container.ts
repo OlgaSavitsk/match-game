@@ -1,5 +1,5 @@
 import './form-container.scss';
-import { Component } from '../../../component';
+import { Component } from '../../component';
 import { FormAvatar } from '../form-avatar/form-avatar';
 import { Form } from '../form/form';
 

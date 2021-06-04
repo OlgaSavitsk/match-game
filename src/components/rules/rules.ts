@@ -1,5 +1,5 @@
 import './rules.scss';
-import { Component } from '../../component';
+import { Component } from '../component';
 import { RuleStart } from '../rule-start/rule-start';
 
 export class Rules implements Component {

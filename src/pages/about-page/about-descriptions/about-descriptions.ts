@@ -1,6 +1,6 @@
 import './about-descriptions.scss';
-import { Component } from '../../component';
-import { Rules } from '../rules/rules';
+import { Component } from '../../../components/component';
+import { Rules } from '../../../components/rules/rules';
 
 export class AboutDescriptions implements Component {
   private readonly aboutDescriptions: HTMLElement;

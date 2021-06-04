@@ -1,4 +1,6 @@
 import './game.scss';
+import { count, countReset } from 'console';
+
 import { Button } from '../../shared/button/button';
 import { delay } from '../../shared/delay';
 import { BaseComponent } from '../base-component';
@@ -30,7 +32,15 @@ export class Game extends BaseComponent {
 
   private openCards: Array<Card> = [];
 
+  private active: Array<Card> = [];
+
+  private mistake: Array<Card> = [];
+
+  private timeGame: number;
+
   private cards: Card[];
+
+  count: number;
 
   constructor() {
     super('div', ['game']);
@@ -46,7 +56,7 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.button.element).onclick = () => {
       this.timer.stopTimer();
       this.button.element.innerHTML = `
-      <a class="button__link" href="#">STOP GAME</a>`;
+      <a class="button__link" href="#">${this.counter}</a>`;
     };
   }
 
@@ -66,6 +76,7 @@ export class Game extends BaseComponent {
     });
     this.cardField.addCards(cards);
     this.timer.initTimer();
+    this.counter();
   }
 
   private async cardHandler(card: Card) {
@@ -74,6 +85,9 @@ export class Game extends BaseComponent {
     this.isAnimation = true;
     await card.flipToFront();
 
+    if (this.activeCard) {
+      this.active.push(this.activeCard);
+    }
     if (!this.activeCard) {
       this.activeCard = card;
       this.isAnimation = false;
@@ -83,6 +97,7 @@ export class Game extends BaseComponent {
       await delay(colorDelay);
       card.element.classList.add('unmatch');
       this.activeCard.element.classList.add('unmatch');
+      this.mistake.push(this.activeCard);
       await delay(flipDelay);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
       card.element.classList.remove('unmatch');
@@ -105,10 +120,18 @@ export class Game extends BaseComponent {
     }
     if (lavelCategory === '6x6' && this.openCards.length === 18) {
       this.timer.stopTimer();
+      this.timeGame = this.timer.textContent;
       await delay(colorDelay);
       this.popupCover.element.classList.add('show');
       this.popupField.element.classList.add('show');
+      console.log(this.count);
     }
+  }
+
+  counter(): number {
+    const count = (this.active.length - this.mistake.length) * 100 - (this.timeGame) * 10;
+    this.button.textContent = count;
+    return count;
   }
 }
 export default Game;

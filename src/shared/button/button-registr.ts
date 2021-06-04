@@ -1,5 +1,5 @@
 import './button-registr.scss';
-import { Component } from '../../component';
+import { Component } from '../../components/component';
 
 export class ButtonRegistr implements Component {
   readonly buttonRegistr: HTMLButtonElement;

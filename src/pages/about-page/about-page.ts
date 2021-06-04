@@ -1,7 +1,7 @@
 import '../pages.scss';
-import { Component } from 'component';
+import { Component } from 'components/component';
 
-import { AboutField } from '../../components/about-field/about-field';
+import { AboutField } from './about-field/about-field';
 import { FormRegistr } from '../../components/form/form-registr';
 import { Button } from '../../shared/button/button';
 import { ButtonRegistr } from '../../shared/button/button-registr';
@@ -20,7 +20,7 @@ export class AboutPage implements Component {
     this.root.appendChild(this.aboutPage);
     this.aboutPage.appendChild(new AboutField(this.aboutPage).render());
     this.root.appendChild(new ButtonRegistr(this.aboutPage).render()).onclick = () => {
-      new FormRegistr(this.aboutPage /* , this.db */).render();
+      new FormRegistr(this.aboutPage).render();
     };
     this.button = new Button();
     this.aboutPage.prepend(this.button.element);

@@ -29,3 +29,6 @@
 .form__button_colored .invalid {
   background-color: crimson;
 }
+.disabled {
+pointer-events: none;
+}

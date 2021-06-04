@@ -1,5 +1,5 @@
 import '../setting.scss';
-import { Component } from '../../../component';
+import { Component } from '../../../components/component';
 
 export class SelectBlockCard implements Component {
   private readonly selectBlockCard: HTMLElement;

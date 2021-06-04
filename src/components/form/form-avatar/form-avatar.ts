@@ -1,5 +1,5 @@
 import './form-avatar.scss';
-import { Component } from '../../../component';
+import { Component } from '../../component';
 
 export class FormAvatar implements Component {
   private readonly formAvatar: HTMLImageElement;

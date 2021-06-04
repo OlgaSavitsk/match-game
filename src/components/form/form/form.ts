@@ -1,19 +1,22 @@
 import './form.scss';
-import { Component } from '../../../component';
+import { Component } from '../../component';
 
 import { Input } from './input';
 
 export class Form implements Component {
   private form: HTMLElement;
 
+  userData: {};
+
   private inputs: Input[];
+
   onValidate: string | (() => boolean) | undefined;
 
   constructor(
-    private readonly root: HTMLElement) {
+    private readonly root: HTMLElement,
+  ) {
     this.form = document.createElement('form');
   }
-
 
   render(): HTMLElement {
     this.root.appendChild(this.form);

@@ -1,5 +1,5 @@
 import '../setting.scss';
-import { Component } from '../../../component';
+import { Component } from '../../../components/component';
 import { SelectBlockCard } from '../select-block/select-card';
 import { SelectBlockLavel } from '../select-block/select-lavel';
 

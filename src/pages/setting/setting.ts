@@ -1,4 +1,4 @@
-import { Component } from '../../component';
+import { Component } from '../../components/component';
 import { Button } from '../../shared/button/button';
 
 import { SettingField } from './setting-field/setting-field';

@@ -1,10 +1,8 @@
-import { Component } from 'component';
-
+import { Component } from 'components/component';
 import { ImageCategoryModel } from 'models/image-category-model';
 
 import '../pages.scss';
 import { Avatar } from '../../components/avatar/avatar';
-
 import { Game } from '../../components/game/game';
 
 export class GamePage implements Component {

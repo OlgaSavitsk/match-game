@@ -1,5 +1,5 @@
 import './rule-start.scss';
-import { Component } from '../../component';
+import { Component } from '../component';
 
 export class RuleStart implements Component {
   private readonly ruleStart: HTMLElement;
