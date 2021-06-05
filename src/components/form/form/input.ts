@@ -19,21 +19,18 @@ export class Input implements Component {
 
   public regNumber = /^\d{1,}$/gi;
 
-  name: string;
+  public name: string;
 
-  userDate: {};
+  public userDate: {};
 
   onInput: () => void = () => {};
 
-  usernameValue: string;
+  public usernameValue: string;
 
-  surnameValue: string;
+  public surnameValue: string;
 
-  emailValue: string;
+  public emailValue: string;
 
-  value: any;
-
-  private db: DataBase = new DataBase();
 
   constructor(
     private readonly root: HTMLElement,
@@ -50,7 +47,7 @@ export class Input implements Component {
     this.error = document.createElement('div');
     this.error.classList.add('error');
     this.field.name = name;
-    this.field.addEventListener('input', async e => {
+    this.field.addEventListener('input', ()=> {
       if (this.onValidate) {
         this.setError(this.onValidate(this.getValue()));
       }
@@ -59,61 +56,26 @@ export class Input implements Component {
       }
     });
   }
-  /*
-  getValueInput() {
-    return (this.field.name === 'username') ? this.usernameValue = this.field.value : ''
-    return (this.field.name === 'surname') ? this.surnameValue = this.field.value : ''
-    return (this.field.name === 'email') ? this.emailValue = this.field.value : ''
-
-  let userData = {
-    name: this.usernameValue,
-    surname: this.surnameValue,
-    email: this.emailValue,
-    }
-    return userData;
-  } */
-
-  /* getValueInput() {
-  if (this.field.name === 'username'){
-    this.usernameValue = this.field.value;
-   }
-   return this.usernameValue
-   if (this.field.name === 'surname'){
-     this.surnameValue = this.field.value;
-   }
-   return this.surnameValue
-   if (this.field.name === 'email'){
-     this.emailValue = this.field.value;
-   }
-   return this.emailValue;
-
-let userDate = {
-  'username': this.usernameValue,
-  'surname': this.surnameValue,
-  'email': this.emailValue
-  }
-  return userDate;
-} */
 
   onValidate(value: string): string {
-    if (this.field.name === 'email') {
-      buttonadd?.setAttribute('disabled', 'disabled');
-      return (this.regEmail.exec(this.field.value)) ? 'ok' : 'Error';
+    if( this.field.name === 'email'){
+      return  this.field.value.match(this.regEmail) ? 'ok' : 'Error';
     }
     if (this.field.value.length === 0) {
       buttonadd?.setAttribute('disabled', 'disabled');
       return 'Field cannot be empty';
     }
-    if (/\s/i.exec(this.field.value)) {
+    if(this.field.value.match(/\s/i)){
       return 'The name cannot contain more than one word';
     }
-    if (this.regNumber.exec(this.field.value)) {
-      return 'The name cannot be numbers';
+    if(this.field.value.match(this.regNumber)){
+      return  'The name cannot be numbers';
+    } else {
+      return this.field.value.match(this.regName) ? 'ok' : 'Field cannot consist of one symbal or contain the marks';
     }
-    return (this.regName.exec(this.field.value)) ? 'ok' : 'Тame cannot consist of one symbal or contain the marks';
   }
 
-  getValue() {
+  getValue(): string {
     return this.field.value;
   }
 

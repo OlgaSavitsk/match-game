@@ -55,6 +55,7 @@ export class DataBase {
     };
     openRequest.onsuccess = async () => {
       this.db = openRequest.result;
+      this.readAll('users')
       await this.readFilter('users');
     };
   }
@@ -89,13 +90,12 @@ export class DataBase {
 
     const transaction = await this.db.transaction('users');
     const store = transaction.objectStore('users');
-    const result = store.openCursor(null, 'next');
+    const result = store.openCursor();
     result.onsuccess = () => {
       const cursor = result.result;
       if (cursor) {
         scoreList.innerHTML += `<ul id ="scorelist" class="score__list"><li class="score__avatar"></li><li class="score__name" data-key="${cursor.value.id}">${cursor.value.name}  ${cursor.value.surname}</li>
            <li class="score__email">${cursor.value.email}</li></ul>`;
-
         cursor.continue('error');
       }
     };
